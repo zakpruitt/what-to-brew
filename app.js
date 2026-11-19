@@ -54,12 +54,12 @@ function coin(copper, signed = false) {
   return `<span class="g${tone}">${money(copper)}</span>`;
 }
 
-// Addon export: AP1^t=<unix>^r=<name>~<itemID>;...^p=<id>:<copper>,...^a=...^v=...
+// Addon export: WTB1^t=<unix>^r=<name>~<itemID>;...^p=<id>:<copper>,...^a=...^v=...
 // p = the addon's own scan, a = Auctionator's last seen price, v = vendor prices.
 function parseScan(text) {
   const [magic, ...sections] = String(text || "").trim().split("^");
-  if (magic !== "AP1" && magic !== "FA1") {
-    throw new Error("That does not look like an AlchProfit export (it should start with AP1).");
+  if (!["WTB1", "AP1", "FA1"].includes(magic)) {
+    throw new Error("That does not look like a What To Brew export (it should start with WTB1).");
   }
   const result = { t: 0, recipes: [], p: {}, a: {}, v: {} };
   for (const section of sections) {

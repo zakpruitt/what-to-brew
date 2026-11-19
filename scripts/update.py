@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh data/data.json for the AlchProfit site.
+"""Refresh data/data.json for the What To Brew site.
 
     python scripts/update.py            refresh prices and print today's summary
     python scripts/update.py --push     also commit and push data/
@@ -203,8 +203,8 @@ def summary(data):
           f"{data['ahCut']:.0%} auction house cut. Sorted by profit x estimated daily sales.")
 
 
-ADDON_SRC = ROOT / "addon" / "AlchProfit"
-ADDON_DEST = Path(r"C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns\AlchProfit")
+ADDON_SRC = ROOT / "addon" / "WhatToBrew"
+ADDON_DEST = Path(r"C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns\WhatToBrew")
 
 
 def write_addon(data):
@@ -216,12 +216,12 @@ def write_addon(data):
             ids.add(r["recipe"]["id"])
     ids = sorted(ids)
     body = "\n".join("    " + ", ".join(map(str, ids[i:i + 12])) + "," for i in range(0, len(ids), 12))
-    lua = ADDON_SRC / "AlchProfit.lua"
+    lua = ADDON_SRC / "WhatToBrew.lua"
     block = f"-- SITE_ITEMS_BEGIN\nlocal SITE_ITEMS = {{\n{body}\n}}\n-- SITE_ITEMS_END"
     src, n = re.subn(r"-- SITE_ITEMS_BEGIN.*?-- SITE_ITEMS_END", lambda _: block,
                      lua.read_text("utf-8"), flags=re.S)
     if n != 1:
-        raise SystemExit("SITE_ITEMS markers not found in addon/AlchProfit/AlchProfit.lua")
+        raise SystemExit("SITE_ITEMS markers not found in addon/WhatToBrew/WhatToBrew.lua")
     lua.write_text(src, "utf-8", newline="\n")
     print(f"addon item list: {len(ids)} items")
 

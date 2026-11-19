@@ -1,4 +1,4 @@
--- AlchProfit: in-game companion to https://zakpruitt.github.io/alchprofit/
+-- What To Brew: in-game companion to https://zakpruitt.github.io/what-to-brew/
 
 local AH_CUT = 0.05
 local SEND_INTERVAL = 0.65 -- the game allows 100 searches per minute
@@ -297,11 +297,11 @@ end
 local function AuctionatorPrice(itemID)
     local api = Auctionator and Auctionator.API and Auctionator.API.v1
     if not (api and api.GetAuctionPriceByItemID) then return end
-    local ok, price = pcall(api.GetAuctionPriceByItemID, "AlchProfit", itemID)
+    local ok, price = pcall(api.GetAuctionPriceByItemID, "WhatToBrew", itemID)
     if ok and type(price) == "number" and price > 0 then return price end
 end
 
--- AP1^t=<scan time>^r=<name>~<itemID>;...^p=<itemID>:<copper>,...^a=...^v=...
+-- WTB1^t=<scan time>^r=<name>~<itemID>;...^p=<itemID>:<copper>,...^a=...^v=...
 -- p = own scan, a = Auctionator's last seen price, v = vendor prices
 local function BuildExport()
     local wanted, order = {}, {}
@@ -336,7 +336,7 @@ local function BuildExport()
         if v and v >= 1 then vendor[#vendor + 1] = format("%d:%d", itemID, math.floor(v + 0.5)) end
     end
     return table.concat({
-        "AP1",
+        "WTB1",
         "t=" .. (db.scanTime or 0),
         "r=" .. table.concat(names, ";"),
         "p=" .. table.concat(own, ","),
@@ -349,12 +349,12 @@ local exportFrame
 
 local function ShowExport()
     if not exportFrame then
-        local f = CreateFrame("Frame", "AlchProfitExportFrame", UIParent, "BasicFrameTemplateWithInset")
+        local f = CreateFrame("Frame", "WhatToBrewExportFrame", UIParent, "BasicFrameTemplateWithInset")
         f:SetSize(460, 130)
         f:SetPoint("CENTER", 0, 120)
         f:SetFrameStrata("DIALOG")
-        tinsert(UISpecialFrames, "AlchProfitExportFrame")
-        if f.TitleText then f.TitleText:SetText("AlchProfit export") end
+        tinsert(UISpecialFrames, "WhatToBrewExportFrame")
+        if f.TitleText then f.TitleText:SetText("What To Brew export") end
 
         f.help = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         f.help:SetPoint("TOPLEFT", 14, -34)
@@ -381,7 +381,7 @@ local function ShowExport()
     local text, own, other = BuildExport()
     exportFrame.text = text
     exportFrame.help:SetText(format(
-        "Press Ctrl+C, then paste into zakpruitt.github.io/alchprofit\n%d scanned prices%s. Scanned %s.",
+        "Press Ctrl+C, then paste into zakpruitt.github.io/what-to-brew\n%d scanned prices%s. Scanned %s.",
         own, other > 0 and format(" plus %d from Auctionator", other) or "", Age(db.scanTime)))
     exportFrame.box:SetText(text)
     exportFrame:Show()
@@ -448,7 +448,7 @@ local function RowTooltip(self)
 end
 
 local function CreateWindow()
-    local f = CreateFrame("Frame", "AlchProfitFrame", UIParent, "BasicFrameTemplateWithInset")
+    local f = CreateFrame("Frame", "WhatToBrewFrame", UIParent, "BasicFrameTemplateWithInset")
     f:SetSize(620, 460)
     f:SetPoint("CENTER")
     f:SetFrameStrata("HIGH")
@@ -458,8 +458,8 @@ local function CreateWindow()
     f:SetScript("OnDragStart", f.StartMoving)
     f:SetScript("OnDragStop", f.StopMovingOrSizing)
     f:SetClampedToScreen(true)
-    tinsert(UISpecialFrames, "AlchProfitFrame")
-    if f.TitleText then f.TitleText:SetText("AlchProfit") end
+    tinsert(UISpecialFrames, "WhatToBrewFrame")
+    if f.TitleText then f.TitleText:SetText("What To Brew") end
 
     f.scan = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.scan:SetSize(80, 22)
@@ -565,9 +565,9 @@ local events = CreateFrame("Frame")
 events:RegisterEvent("ADDON_LOADED")
 events:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" then
-        if arg1 ~= "AlchProfit" then return end
-        AlchProfitDB = AlchProfitDB or {}
-        db = AlchProfitDB
+        if arg1 ~= "WhatToBrew" then return end
+        WhatToBrewDB = WhatToBrewDB or {}
+        db = WhatToBrewDB
         db.recipes = db.recipes or {}
         db.prices = db.prices or {}
         db.vendor = db.vendor or {}
@@ -596,6 +596,6 @@ events:SetScript("OnEvent", function(self, event, arg1)
     end
 end)
 
-SLASH_ALCHPROFIT1 = "/alchprofit"
-SLASH_ALCHPROFIT2 = "/alch"
-SlashCmdList.ALCHPROFIT = Toggle
+SLASH_WHATTOBREW1 = "/brew"
+SLASH_WHATTOBREW2 = "/whattobrew"
+SlashCmdList.WHATTOBREW = Toggle

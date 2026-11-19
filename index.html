@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AlchProfit</title>
+<title>What To Brew</title>
 <meta name="description" content="What to brew today: alchemy profit on the WoW Forever US PvP Horde auction house.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
-  <h1>⚗️ AlchProfit</h1>
+  <h1><img src="assets/logo.png" alt="" width="56" height="56"> What To Brew</h1>
   <div class="sub" id="scan">Loading prices…</div>
 
   <div class="bar">
@@ -26,12 +26,12 @@
   <details class="card" id="scanCard">
     <summary>Use my own auction scan <span class="sub" id="scanStatus"></span></summary>
     <ol class="steps">
-      <li>Install the <a href="https://github.com/zakpruitt/alchprofit/tree/master/addon/AlchProfit">AlchProfit addon</a>, this site's in-game companion.</li>
+      <li>Install the <a href="https://github.com/zakpruitt/what-to-brew/tree/master/addon/WhatToBrew">What To Brew addon</a>, this site's in-game companion.</li>
       <li>In game, open your Alchemy window once, then open the auction house.</li>
-      <li>Type <b>/alch</b>, press <b>Scan all</b> and wait for it to finish (a few minutes).</li>
+      <li>Type <b>/brew</b>, press <b>Scan all</b> and wait for it to finish (a few minutes).</li>
       <li>Press <b>Export</b>, then Ctrl+C, and paste the text below.</li>
     </ol>
-    <textarea id="scanText" placeholder="AP1^t=...  (paste the AlchProfit export here)" spellcheck="false"></textarea>
+    <textarea id="scanText" placeholder="WTB1^t=...  (paste the What To Brew export here)" spellcheck="false"></textarea>
     <div class="scanrow">
       <button class="primary" id="scanApply">Use this scan</button>
       <button id="scanClear">Clear, use HordeLedger prices</button>

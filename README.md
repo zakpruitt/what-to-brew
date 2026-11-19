@@ -1,10 +1,10 @@
-# AlchProfit
+# What To Brew
 
 What to brew today on the WoW Forever auction house. Two parts, one name:
 
-- **The site**, https://zakpruitt.github.io/alchprofit/, ranks every Alchemy recipe by profit and
+- **The site**, https://zakpruitt.github.io/what-to-brew/, ranks every Alchemy recipe by profit and
   tells you what to craft, which recipes are worth buying, and how many crafts pay them off.
-- **The addon**, `addon/AlchProfit`, is its in-game companion. It scans the auction house, reads
+- **The addon**, `addon/WhatToBrew`, is its in-game companion. It scans the auction house, reads
   the recipes you know, and exports both as a line of text you paste into the site.
 
 Without the addon the site uses hourly US PvP Horde prices from HordeLedger and you tick your
@@ -13,12 +13,12 @@ themselves. Everything you paste or tick stays in your browser's localStorage; t
 
 ## Use it
 
-1. Copy `addon/AlchProfit` into `World of Warcraft/_forever_/Interface/AddOns/`.
+1. Copy `addon/WhatToBrew` into `World of Warcraft/_forever_/Interface/AddOns/`.
 2. In game, open your Alchemy window once, then the auction house.
-3. Type `/alch`, press **Scan all** and wait for it to finish.
+3. Type `/brew`, press **Scan all** and wait for it to finish.
 4. Press **Export**, Ctrl+C, and paste into "Use my own auction scan" on the site.
 
-`/alch` on its own also works as a standalone profit window for the recipes you know.
+`/brew` on its own also works as a standalone profit window for the recipes you know.
 
 ## Develop
 
