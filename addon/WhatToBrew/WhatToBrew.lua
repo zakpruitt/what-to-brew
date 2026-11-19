@@ -3,6 +3,7 @@
 local AH_CUT = 0.05
 local SEND_INTERVAL = 0.65 -- the game allows 100 searches per minute
 local TIMEOUT = 3
+local BROWSE_TIMEOUT = 10
 local ALCHEMY_SKILL_LINE = 171
 
 local ALCHEMY = Enum.Profession and Enum.Profession.Alchemy
@@ -216,8 +217,69 @@ local function StopScan(finished)
     end
 end
 
+local function ItemClass(itemID)
+    local instant = (C_Item and C_Item.GetItemInfoInstant) or GetItemInfoInstant
+    if not instant then return end
+    local _, _, _, _, _, classID, subClassID = instant(itemID)
+    return classID, subClassID
+end
+
+-- A browse returns the cheapest price of every item in a category, 50 per page,
+-- so a few pages replace hundreds of single-item searches. If it fails or looks
+-- wrong, every item falls back to its own search.
+local function FinishBrowse(ok)
+    local found = 0
+    for _ in pairs(scan.found) do found = found + 1 end
+    if ok and found * 4 >= scan.browseCount then
+        for itemID in pairs(scan.browsing) do db.prices[itemID] = scan.found[itemID] end
+    else
+        for itemID in pairs(scan.browsing) do scan.queue[#scan.queue + 1] = itemID end
+    end
+    scan.phase, scan.waiting, scan.total = "search", false, #scan.queue
+end
+
+local function BrowseStep(now)
+    if scan.waiting then
+        if now - scan.sentAt > BROWSE_TIMEOUT then FinishBrowse(false) end
+        return
+    end
+    if not C_AuctionHouse.IsThrottledMessageSystemReady() then return end
+    scan.waiting, scan.sentAt = true, now
+    local ok
+    if scan.pages == 0 then
+        ok = pcall(C_AuctionHouse.SendBrowseQuery, {
+            searchString = "", sorts = SORTS, filters = {}, itemClassFilters = scan.filters,
+        })
+    else
+        ok = pcall(C_AuctionHouse.RequestMoreBrowseResults)
+    end
+    if not ok then
+        FinishBrowse(false)
+        return
+    end
+    scan.pages = scan.pages + 1
+    SetStatus(format("Reading the auction house, page %d ...", scan.pages))
+end
+
+local function OnBrowseResults(added)
+    if not scan or scan.phase ~= "browse" or not scan.waiting then return end
+    for _, entry in ipairs(added or C_AuctionHouse.GetBrowseResults() or {}) do
+        local itemID, price = entry.itemKey and entry.itemKey.itemID, entry.minPrice
+        if itemID and scan.browsing[itemID] and price and price > 0
+            and (not scan.found[itemID] or price < scan.found[itemID]) then
+            scan.found[itemID] = price
+        end
+    end
+    scan.waiting = false
+    if C_AuctionHouse.HasFullBrowseResults() then FinishBrowse(true) end
+end
+
 local function ScanStep()
     local now = GetTime()
+    if scan.phase == "browse" then
+        BrowseStep(now)
+        return
+    end
     if scan.current then
         if now - scan.sentAt < TIMEOUT then return end
         db.prices[scan.current] = nil -- no answer: treat as not for sale
@@ -265,7 +327,26 @@ local function StartScan(all)
         SetStatus("|cffff5555No recipes yet. Open your Alchemy window once.|r")
         return
     end
-    scan = { queue = queue, total = #queue, lastSend = 0 }
+    local browsing, filters, filterSeen, single = {}, {}, {}, {}
+    local canBrowse = C_AuctionHouse.SendBrowseQuery and C_AuctionHouse.HasFullBrowseResults
+    for _, itemID in ipairs(queue) do
+        local classID, subClassID = ItemClass(itemID)
+        if canBrowse and classID then
+            browsing[itemID] = true
+            local key = classID .. ":" .. (subClassID or "")
+            if not filterSeen[key] then
+                filterSeen[key] = true
+                filters[#filters + 1] = { classID = classID, subClassID = subClassID }
+            end
+        else
+            single[#single + 1] = itemID
+        end
+    end
+    scan = {
+        queue = single, total = #single, lastSend = 0,
+        phase = #filters > 0 and "browse" or "search",
+        browsing = browsing, browseCount = #queue - #single, filters = filters, found = {}, pages = 0,
+    }
     window.scanAll:SetEnabled(false)
     scan.ticker = C_Timer.NewTicker(0.1, ScanStep)
     window.scan:SetText("Stop")
@@ -576,9 +657,11 @@ events:SetScript("OnEvent", function(self, event, arg1)
             "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE", "TRADE_SKILL_DATA_SOURCE_CHANGED", "NEW_RECIPE_LEARNED",
             "AUCTION_HOUSE_SHOW", "AUCTION_HOUSE_CLOSED",
             "COMMODITY_SEARCH_RESULTS_UPDATED", "ITEM_SEARCH_RESULTS_UPDATED",
+            "AUCTION_HOUSE_BROWSE_RESULTS_UPDATED", "AUCTION_HOUSE_BROWSE_RESULTS_ADDED",
+            "AUCTION_HOUSE_BROWSE_FAILURE",
             "MERCHANT_SHOW",
         }) do
-            self:RegisterEvent(e)
+            pcall(self.RegisterEvent, self, e)
         end
     elseif event == "AUCTION_HOUSE_SHOW" then
         ahOpen = true
@@ -589,6 +672,12 @@ events:SetScript("OnEvent", function(self, event, arg1)
         OnCommodityResults(arg1)
     elseif event == "ITEM_SEARCH_RESULTS_UPDATED" then
         OnItemResults(arg1)
+    elseif event == "AUCTION_HOUSE_BROWSE_RESULTS_UPDATED" then
+        OnBrowseResults()
+    elseif event == "AUCTION_HOUSE_BROWSE_RESULTS_ADDED" then
+        OnBrowseResults(arg1)
+    elseif event == "AUCTION_HOUSE_BROWSE_FAILURE" then
+        if scan and scan.phase == "browse" then FinishBrowse(false) end
     elseif event == "MERCHANT_SHOW" then
         LearnVendorPrices()
     else
