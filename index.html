@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forever Alchemy</title>
+<meta name="description" content="What to brew today: alchemy profit on the WoW Forever US PvP Horde auction house.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+<style>
+:root {
+  --bg: #14110f; --panel: #1e1a17; --panel2: #262019; --line: #3a3128;
+  --text: #ece4d8; --muted: #a39683; --gold: #e2b659; --good: #7fca7a; --bad: #e07a6a;
+  --warn: #e0a85a; --accent: #b98cf0;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f1e8; --panel: #fffaf1; --panel2: #f1e9da; --line: #d9ccb6;
+    --text: #2b241c; --muted: #6f6352; --gold: #8a6410; --good: #2f7d32; --bad: #b3402f;
+    --warn: #9a6408; --accent: #6b3fb5;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 60px; }
+h1 { font-size: 26px; margin: 0 0 2px; letter-spacing: .2px; }
+h2 { font-size: 17px; margin: 0 0 10px; }
+a { color: var(--gold); }
+.sub { color: var(--muted); font-size: 13px; }
+.stale { color: var(--warn); font-weight: 600; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 14px; margin: 16px 0; }
+.bar label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+input[type=number], input[type=search] { background: var(--bg); color: var(--text);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 7px; font: inherit; }
+input[type=number] { width: 64px; }
+input[type=search] { width: 170px; }
+input[type=checkbox] { accent-color: var(--gold); width: 16px; height: 16px; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.card ol { margin: 0; padding: 0; list-style: none; }
+.card li { padding: 8px 0; border-top: 1px solid var(--line); }
+.card li:first-child { border-top: 0; padding-top: 0; }
+.row1 { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; }
+.row2 { color: var(--muted); font-size: 13px; }
+.empty { color: var(--muted); font-size: 14px; }
+.g { color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pos { color: var(--good); } .neg { color: var(--bad); }
+.tablewrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; margin-top: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 900px; }
+th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums; white-space: nowrap; }
+th { position: sticky; top: 0; background: var(--panel2); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--muted); cursor: pointer; user-select: none; }
+th.sorted { color: var(--gold); }
+th:nth-child(1), td:nth-child(1) { text-align: center; width: 36px; }
+th:nth-child(2), td:nth-child(2) { text-align: left; white-space: normal; min-width: 240px; }
+tr.known td { background: color-mix(in srgb, var(--gold) 7%, transparent); }
+tr:last-child td { border-bottom: 0; }
+.mats { color: var(--muted); font-size: 12px; }
+.tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 9px;
+  border: 1px solid currentColor; margin-left: 6px; vertical-align: 1px; }
+.tag.warn { color: var(--warn); } .tag.info { color: var(--accent); }
+footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>⚗️ Forever Alchemy</h1>
+  <div class="sub" id="scan">Loading prices…</div>
+
+  <div class="bar">
+    <label>My skill <input type="number" id="skill" min="1" max="300" step="5"></label>
+    <label title="Share of each item's estimated daily sales you expect to win">My share of sales
+      <input type="number" id="share" min="1" max="100" step="1">%</label>
+    <label><input type="checkbox" id="onlyProfit"> Profitable only</label>
+    <label><input type="checkbox" id="onlyKnown"> Known only</label>
+    <label><input type="search" id="q" placeholder="Search recipes"></label>
+    <span class="sub" id="count"></span>
+  </div>
+
+  <div class="plans">
+    <section class="card"><h2>Make today</h2><ol id="planMake"></ol></section>
+    <section class="card"><h2>Recipes worth buying</h2><ol id="planBuy"></ol></section>
+    <section class="card"><h2>Not on the auction house</h2><ol id="planOther"></ol></section>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th data-k="known" title="Tick the recipes you know. Saved in this browser.">Have</th>
+        <th data-k="name">Craft</th>
+        <th data-k="skill">Skill</th>
+        <th data-k="cost">Mats</th>
+        <th data-k="sell">Sells for</th>
+        <th data-k="profit">Profit</th>
+        <th data-k="margin">Margin</th>
+        <th data-k="sold">Sold/day</th>
+        <th data-k="listed">Listed</th>
+        <th data-k="daily" title="Profit per day at your share of sales">Per day</th>
+        <th data-k="recipeCost">Recipe</th>
+        <th data-k="breakeven" title="Crafts needed to pay off the recipe">Break-even</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p>Prices: <a href="https://hordeledger.com/market/">HordeLedger</a> (WoW Forever, US PvP, Horde), hourly scans.
+    Reagent lists: <a href="https://wow-forever.gg/auction-house/crafting/alchemy/">wow-forever.gg</a>.
+    Profit is the market price times yield, minus the 5% auction house cut and reagents at market price.
+    "Sold/day" is HordeLedger's estimate from consecutive scans; cancelled listings can count as sales.
+    Transmutes are counted as one per day. Recipe prices can lag the live auction house.</p>
+    <p>Your ticked recipes and settings are stored only in this browser. Fan-made; not affiliated with Blizzard Entertainment.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("fa." + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("fa." + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  var known = new Set(store.get("known", []));
+  var state = {
+    skill: store.get("skill", 300), share: store.get("share", 10),
+    onlyProfit: store.get("onlyProfit", true), onlyKnown: false, q: "",
+    sort: store.get("sort", "daily"), dir: store.get("dir", -1)
+  };
+  var data = null, rows = [];
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+  function money(c) {
+    if (c === null || c === undefined || isNaN(c)) return "–";
+    var neg = c < 0; c = Math.round(Math.abs(c));
+    var g = Math.floor(c / 10000), s = Math.floor(c % 10000 / 100), k = c % 100, out;
+    if (g >= 100) out = g.toLocaleString() + "g";
+    else if (g > 0) out = g + "g " + s + "s";
+    else if (s > 0) out = s + "s " + k + "c";
+    else out = k + "c";
+    return (neg ? "-" : "") + out;
+  }
+  function gspan(c, signed) {
+    var cls = "g" + (signed && c !== null ? (c > 0 ? " pos" : c < 0 ? " neg" : "") : "");
+    return '<span class="' + cls + '">' + money(c) + "</span>";
+  }
+
+  function compute() {
+    var cut = data.ahCut, share = state.share / 100;
+    rows = data.recipes.map(function (r) {
+      var o = { r: r, key: r.key, name: r.key, skill: r.skill, known: known.has(r.key),
+        transmute: /^Transmute/.test(r.spell || ""), cost: null, sell: null, profit: null,
+        margin: null, sold: null, listed: null, daily: null, crafts: null,
+        recipeCost: r.recipe ? r.recipe.lowest : null, breakeven: null, payback: null };
+      var priced = r.reagents.length && r.reagents.every(function (x) { return x.price !== null; });
+      if (priced) o.cost = r.reagents.reduce(function (a, x) { return a + x.qty * x.price; }, 0);
+      if (r.sell && r.sell.market !== null) {
+        o.sell = r.sell.market * r.yield; o.sold = r.sell.sold; o.listed = r.sell.listed;
+      }
+      if (o.cost !== null && o.sell !== null) {
+        o.profit = o.sell * (1 - cut) - o.cost;
+        o.margin = o.cost > 0 ? o.profit / o.cost : null;
+        var perDay = (o.sold || 0) * share / r.yield;
+        o.crafts = o.transmute ? Math.min(1, perDay > 0 ? 1 : 0) : perDay;
+        o.daily = o.profit * o.crafts;
+        if (o.recipeCost !== null && o.profit > 0) {
+          o.breakeven = Math.ceil(o.recipeCost / o.profit);
+          o.payback = o.daily > 0 ? o.recipeCost / o.daily : null;
+        }
+      }
+      return o;
+    });
+  }
+
+  function tags(o) {
+    var t = "", s = o.r.sell;
+    if (o.transmute) t += '<span class="tag info">cooldown</span>';
+    if (s && s.sold && s.listed > 3 * s.sold) t += '<span class="tag warn" title="More than 3 days of stock listed">oversupplied</span>';
+    if (s && s.chg !== null && s.chg >= 50) t += '<span class="tag warn" title="Price up ' + Math.round(s.chg) + '% in 24h">price spike</span>';
+    if (s && s.chg === null) t += '<span class="tag warn" title="Less than a day of price history">new data</span>';
+    return t;
+  }
+  function matsLine(r) {
+    return r.reagents.map(function (x) { return (x.qty > 1 ? x.qty + "× " : "") + esc(x.name); }).join(", ");
+  }
+  function usable(o) { return o.profit !== null && o.profit > 0 && (o.skill === null || o.skill <= state.skill); }
+
+  function renderPlans() {
+    var by = function (k, dir) { return function (a, b) { return dir * ((a[k] === null ? Infinity : a[k]) - (b[k] === null ? Infinity : b[k])); }; };
+    var make = rows.filter(function (o) { return o.known && usable(o) && o.daily > 0; }).sort(by("daily", -1)).slice(0, 8);
+    $("planMake").innerHTML = make.length ? make.map(function (o) {
+      var n = Math.max(1, Math.round(o.crafts));
+      return "<li><div class='row1'><span>" + n + "× " + esc(o.name) + "</span>" + gspan(o.profit * n, true) + "</div>" +
+        "<div class='row2'>" + money(o.cost * n) + " in mats · " + money(o.profit) + " each · " + matsLine(o.r) + "</div></li>";
+    }).join("") : "<li class='empty'>" + (known.size ? "Nothing you know is profitable right now." : "Tick the recipes you know in the table below and your best crafts show up here.") + "</li>";
+
+    var buy = rows.filter(function (o) { return !o.known && usable(o) && o.recipeCost !== null && o.payback !== null && o.payback <= 14; }).sort(by("daily", -1)).slice(0, 6);
+    $("planBuy").innerHTML = buy.length ? buy.map(function (o) {
+      var days = o.payback < 1 ? "under a day" : "about " + Math.ceil(o.payback) + " day" + (Math.ceil(o.payback) > 1 ? "s" : "");
+      return "<li><div class='row1'><span>" + esc(o.name) + "</span>" + gspan(o.recipeCost) + "</div>" +
+        "<div class='row2'>" + money(o.profit) + " per craft · pays off after " + o.breakeven + " craft" + (o.breakeven > 1 ? "s" : "") + ", " + days +
+        " · " + o.r.recipe.listed + " listed</div></li>";
+    }).join("") : "<li class='empty'>No unowned recipe on the auction house pays for itself right now.</li>";
+
+    var other = rows.filter(function (o) { return !o.known && usable(o) && o.recipeCost === null && o.daily > 0; }).sort(by("daily", -1)).slice(0, 6);
+    $("planOther").innerHTML = other.length ? other.map(function (o) {
+      return "<li><div class='row1'><span>" + esc(o.name) + "</span>" + gspan(o.profit, true) + "</div>" +
+        "<div class='row2'>" + esc(o.r.note || "Check your trainer or the favor vendor") + " · about " + Math.round(o.sold || 0) + " sold/day</div></li>";
+    }).join("") : "<li class='empty'>Nothing here.</li>";
+  }
+
+  function renderTable() {
+    var q = state.q.trim().toLowerCase();
+    var list = rows.filter(function (o) {
+      if (state.onlyProfit && !(o.profit > 0) && !o.known) return false;
+      if (state.onlyKnown && !o.known) return false;
+      if (o.skill !== null && o.skill > state.skill) return false;
+      if (q && (o.name + " " + o.r.name + " " + matsLine(o.r)).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    var k = state.sort, dir = state.dir;
+    list.sort(function (a, b) {
+      var x = a[k], y = b[k];
+      if (k === "name") return dir * String(x).localeCompare(String(y));
+      if (k === "known") { x = x ? 1 : 0; y = y ? 1 : 0; }
+      if (x === null && y === null) return a.name.localeCompare(b.name);
+      if (x === null) return 1;
+      if (y === null) return -1;
+      return dir * (x - y) || a.name.localeCompare(b.name);
+    });
+    $("rows").innerHTML = list.map(function (o) {
+      var sub = o.r.spell ? " <span class='mats'>→ " + esc(o.r.name) + (o.r.yield > 1 ? " ×" + o.r.yield : "") + "</span>" : (o.r.yield > 1 ? " <span class='mats'>×" + o.r.yield + "</span>" : "");
+      var rec = o.recipeCost !== null ? gspan(o.recipeCost) : "<span class='mats' title='" + esc(o.r.note || "Not listed on the auction house") + "'>" + (o.r.note ? "favor" : "–") + "</span>";
+      return "<tr class='" + (o.known ? "known" : "") + "'>" +
+        "<td><input type='checkbox' data-key=\"" + esc(o.key) + "\"" + (o.known ? " checked" : "") + " aria-label=\"I know " + esc(o.name) + "\"></td>" +
+        "<td><div>" + esc(o.name) + sub + tags(o) + "</div><div class='mats'>" + matsLine(o.r) + "</div></td>" +
+        "<td>" + (o.skill === null ? "–" : o.skill) + "</td>" +
+        "<td>" + gspan(o.cost) + "</td><td>" + gspan(o.sell) + "</td><td>" + gspan(o.profit, true) + "</td>" +
+        "<td>" + (o.margin === null ? "–" : Math.round(o.margin * 100) + "%") + "</td>" +
+        "<td>" + (o.sold === null ? "–" : Math.round(o.sold).toLocaleString()) + "</td>" +
+        "<td>" + (o.listed === null ? "–" : o.listed.toLocaleString()) + "</td>" +
+        "<td>" + gspan(o.daily, true) + "</td>" +
+        "<td>" + rec + "</td>" +
+        "<td>" + (o.breakeven === null ? "–" : o.breakeven.toLocaleString()) + "</td></tr>";
+    }).join("");
+    $("count").textContent = list.length + " of " + rows.length + " recipes · " + known.size + " known";
+    Array.prototype.forEach.call(document.querySelectorAll("th"), function (th) {
+      th.classList.toggle("sorted", th.dataset.k === state.sort);
+    });
+  }
+  function render() { compute(); renderPlans(); renderTable(); }
+
+  function header() {
+    var m = /(\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}) US Central/.exec(data.scan);
+    var age = (Date.now() - new Date(data.generated).getTime()) / 36e5;
+    var ageTxt = age < 1 ? "under an hour ago" : Math.round(age) + " hour" + (Math.round(age) === 1 ? "" : "s") + " ago";
+    $("scan").innerHTML = "WoW Forever · US PvP · Horde · auction scan " + esc(m ? m[1] + " Central" : "time unknown") +
+      " · pulled " + (age > 6 ? "<span class='stale'>" + ageTxt + " (stale: run the update)</span>" : ageTxt);
+  }
+
+  $("skill").value = state.skill; $("share").value = state.share; $("onlyProfit").checked = state.onlyProfit;
+  $("skill").addEventListener("input", function (e) { state.skill = +e.target.value || 300; store.set("skill", state.skill); render(); });
+  $("share").addEventListener("input", function (e) { state.share = Math.min(100, Math.max(1, +e.target.value || 10)); store.set("share", state.share); render(); });
+  $("onlyProfit").addEventListener("change", function (e) { state.onlyProfit = e.target.checked; store.set("onlyProfit", state.onlyProfit); renderTable(); });
+  $("onlyKnown").addEventListener("change", function (e) { state.onlyKnown = e.target.checked; renderTable(); });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value; renderTable(); });
+  $("rows").addEventListener("change", function (e) {
+    var key = e.target.dataset.key; if (!key) return;
+    if (e.target.checked) known.add(key); else known.delete(key);
+    store.set("known", Array.from(known)); render();
+  });
+  document.querySelector("thead").addEventListener("click", function (e) {
+    var th = e.target.closest("th"); if (!th) return;
+    if (state.sort === th.dataset.k) state.dir = -state.dir;
+    else { state.sort = th.dataset.k; state.dir = th.dataset.k === "name" || th.dataset.k === "breakeven" ? 1 : -1; }
+    store.set("sort", state.sort); store.set("dir", state.dir); renderTable();
+  });
+
+  fetch("data/data.json?t=" + Date.now()).then(function (r) {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then(function (d) { data = d; header(); render(); }).catch(function (e) {
+    $("scan").innerHTML = "<span class='stale'>Could not load data/data.json (" + esc(e.message) + "). Run scripts/update.py.</span>";
+  });
+})();
+</script>
+</body>
+</html>
