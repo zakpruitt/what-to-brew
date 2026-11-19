@@ -1,19 +1,11 @@
 #!/usr/bin/env python3
 """Refresh data/data.json for the AlchProfit site.
 
-Prices:  HordeLedger market CSV (WoW Forever, US PvP, Horde), refreshed hourly upstream.
-Recipes: wow-forever.gg alchemy crafting page (reagent lists only; its prices are
-         Alliance from another realm and are ignored). Cached in data/recipes.json and
-         re-fetched at most once a day, or with --recipes.
-
-Usage:
-    python scripts/update.py            refresh data and print today's summary
+    python scripts/update.py            refresh prices and print today's summary
     python scripts/update.py --push     also commit and push data/
-    python scripts/update.py --recipes  force a recipe re-fetch
-    python scripts/update.py --addon    rebuild the AlchProfit addon's item list
-    python scripts/update.py --install  copy addon/AlchProfit into the game's AddOns folder
-
-Standard library only.
+    python scripts/update.py --recipes  force a re-fetch of the recipe list
+    python scripts/update.py --addon    rebuild the addon's item list
+    python scripts/update.py --install  copy the addon into the game's AddOns folder
 """
 import csv
 import datetime as dt
@@ -38,8 +30,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 AH_CUT = 0.05
 RECIPE_MAX_AGE_HOURS = 24
 
-# Where recipes come from when they are not an auction house drop. Hand-kept;
-# from community guides (wow.gg Merchant's Favor guide), not verified in game.
+# From the wow.gg Merchant's Favor guide; not verified in game.
 NOTES = {
     "Potion of Elemental Purging": "Favor vendor: 180 Merchant's Favor, Honored",
     "Caustic Smog Potion": "Favor vendor: 180 Merchant's Favor, Honored",
@@ -66,7 +57,6 @@ def copper(text):
 
 
 def parse_recipes(page):
-    """Pull every recipe row off the wow-forever.gg alchemy crafting page."""
     recipes = []
     rows = re.finditer(r'<tr data-n="[^"]*"[^>]*data-k(?:="([^"]*)")?>(.*?)</tr>', page, re.S)
     for m in rows:
@@ -116,7 +106,7 @@ def load_recipes(force):
         recipes = parse_recipes(fetch(RECIPES_URL))
         if len(recipes) < 50:
             raise ValueError(f"only {len(recipes)} recipes parsed; page layout may have changed")
-    except Exception as e:  # network block or layout change: keep working from the cache
+    except Exception as e:
         if cached:
             print(f"! recipe fetch failed ({e}); using cached list from {cached['fetched'][:10]}")
             return cached
@@ -218,7 +208,6 @@ ADDON_DEST = Path(r"C:\Program Files (x86)\World of Warcraft\_forever_\Interface
 
 
 def write_addon(data):
-    """Regenerate the addon's item list (everything the page prices) from the recipe data."""
     ids = set()
     for r in data["recipes"]:
         ids.add(r["itemId"])
@@ -238,7 +227,6 @@ def write_addon(data):
 
 
 def install_addon():
-    """Copy addon/AlchProfit into the game's AddOns folder."""
     if not ADDON_DEST.parent.exists():
         raise SystemExit(f"AddOns folder not found: {ADDON_DEST.parent}")
     ADDON_DEST.mkdir(exist_ok=True)
