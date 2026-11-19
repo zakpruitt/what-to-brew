@@ -1,46 +1,45 @@
-# Forever Alchemy
+# AlchProfit
 
-What to brew today on the WoW Forever US PvP Horde auction house. Live at
-https://zakpruitt.github.io/forever-alchemy/.
+What to brew today on the WoW Forever auction house. Two parts, one name:
 
-Tick the recipes you know and the page ranks what to craft from them, which recipes on the
-auction house would pay for themselves, and which profitable ones come from somewhere else.
-Ticks and settings stay in your browser's localStorage; there is no backend.
+- **The site**, https://zakpruitt.github.io/alchprofit/, ranks every Alchemy recipe by profit and
+  tells you what to craft, which recipes are worth buying, and how many crafts pay them off.
+- **The addon**, `addon/AlchProfit`, is its in-game companion. It scans the auction house, reads
+  the recipes you know, and exports both as a line of text you paste into the site.
 
-## Update prices
+Without the addon the site uses hourly US PvP Horde prices from HordeLedger and you tick your
+recipes by hand. With it, prices are the ones on your own auction house and your recipes tick
+themselves. Everything you paste or tick stays in your browser's localStorage; there is no backend.
 
-```
-python scripts/update.py           # refresh data/data.json and print a summary
-python scripts/update.py --push    # also commit and push (or double-click update.cmd)
-python scripts/update.py --recipes # force a re-fetch of the recipe list
-```
+## Use it
 
-The `Refresh prices` GitHub Action runs the same script hourly and can be triggered by hand
-from the Actions tab.
+1. Copy `addon/AlchProfit` into `World of Warcraft/_forever_/Interface/AddOns/`.
+2. In game, open your Alchemy window once, then the auction house.
+3. Type `/alch`, press **Scan all** and wait for it to finish.
+4. Press **Export**, Ctrl+C, and paste into "Use my own auction scan" on the site.
 
-## Use your own auction scan
+`/alch` on its own also works as a standalone profit window for the recipes you know.
 
-The page can price everything from your own auction house instead of HordeLedger. The
-`addon/AlchProfit` addon scans the auction house and exports a line of text to paste into the
-page's "Use my own auction scan" box. The paste also ticks every recipe you know.
-
-1. Open your Alchemy window once, then the auction house.
-2. `/alch`, press **Scan all**, wait for it to finish.
-3. Press **Export**, Ctrl+C, paste into the page.
+## Develop
 
 ```
-python scripts/update.py --addon     # rebuild the addon's item list from the recipe data
-python scripts/update.py --install   # copy the addon into the game's AddOns folder
+python scripts/update.py            # refresh data/data.json and print a summary
+python scripts/update.py --push     # also commit and push (or double-click update.cmd)
+python scripts/update.py --recipes  # force a re-fetch of the recipe list
+python scripts/update.py --addon    # rebuild the addon's item list from the recipe data
+python scripts/update.py --install  # copy the addon into the game's AddOns folder
 ```
 
-The pasted scan stays in your browser. Sales per day still come from HordeLedger.
+The `Refresh prices` GitHub Action runs the script hourly and can be triggered by hand from the
+Actions tab. The site is plain HTML served by GitHub Pages from the repository root.
 
 ## Data
 
-- Prices: [HordeLedger](https://hordeledger.com/market/) market CSV, scanned hourly.
+- Prices: [HordeLedger](https://hordeledger.com/market/) market CSV, scanned hourly. Sales per day
+  always come from here, even with your own scan loaded.
 - Reagent lists: [wow-forever.gg](https://wow-forever.gg/auction-house/crafting/alchemy/), cached in
   `data/recipes.json` and re-fetched at most once a day. Its prices are Alliance from another
   realm and are not used.
-- Profit is market price times yield, minus the 5% auction house cut and reagents at market price.
+- Profit is price times yield, minus the 5% auction house cut and reagents at market price.
 
 Fan-made; not affiliated with Blizzard Entertainment.

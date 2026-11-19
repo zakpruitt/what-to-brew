@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh data/data.json for the Forever Alchemy page.
+"""Refresh data/data.json for the AlchProfit site.
 
 Prices:  HordeLedger market CSV (WoW Forever, US PvP, Horde), refreshed hourly upstream.
 Recipes: wow-forever.gg alchemy crafting page (reagent lists only; its prices are

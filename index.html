@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Forever Alchemy</title>
+<title>AlchProfit</title>
 <meta name="description" content="What to brew today: alchemy profit on the WoW Forever US PvP Horde auction house.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
 <style>
@@ -78,7 +78,7 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
 </head>
 <body>
 <main>
-  <h1>⚗️ Forever Alchemy</h1>
+  <h1>⚗️ AlchProfit</h1>
   <div class="sub" id="scan">Loading prices…</div>
 
   <div class="bar">
@@ -94,11 +94,12 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
   <details class="card" id="scanCard">
     <summary>Use my own auction scan <span class="sub" id="scanStatus"></span></summary>
     <ol class="steps">
+      <li>Install the <a href="https://github.com/zakpruitt/alchprofit/tree/master/addon/AlchProfit">AlchProfit addon</a>, this site's in-game companion.</li>
       <li>In game, open your Alchemy window once, then open the auction house.</li>
       <li>Type <b>/alch</b>, press <b>Scan all</b> and wait for it to finish (a few minutes).</li>
       <li>Press <b>Export</b>, then Ctrl+C, and paste the text below.</li>
     </ol>
-    <textarea id="scanText" placeholder="FA1^t=...  (paste the AlchProfit export here)" spellcheck="false"></textarea>
+    <textarea id="scanText" placeholder="AP1^t=...  (paste the AlchProfit export here)" spellcheck="false"></textarea>
     <div class="scanrow">
       <button class="primary" id="scanApply">Use this scan</button>
       <button id="scanClear">Clear, use HordeLedger prices</button>
@@ -158,10 +159,10 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
   };
   var data = null, rows = [], scan = null;
 
-  // AlchProfit export: FA1^t=<unix>^r=<name>~<itemID>;...^p=<id>:<copper>,...^a=...^v=...
+  // AlchProfit export: AP1^t=<unix>^r=<name>~<itemID>;...^p=<id>:<copper>,...^a=...^v=...
   function parseScan(text) {
     var parts = String(text || "").trim().split("^");
-    if (parts[0] !== "FA1") throw new Error("That does not look like an AlchProfit export (it should start with FA1).");
+    if (parts[0] !== "AP1" && parts[0] !== "FA1") throw new Error("That does not look like an AlchProfit export (it should start with AP1).");
     var out = { t: 0, recipes: [], p: {}, a: {}, v: {} };
     parts.slice(1).forEach(function (sec) {
       var i = sec.indexOf("="), k = sec.slice(0, i), val = sec.slice(i + 1);

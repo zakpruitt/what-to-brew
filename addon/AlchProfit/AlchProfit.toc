@@ -1,7 +1,9 @@
 ## Interface: 16001
 ## Title: AlchProfit
-## Notes: Scans the auction house and ranks your Alchemy recipes by profit. /alchprofit
-## Version: 1.0
+## Notes: Companion to zakpruitt.github.io/alchprofit. Scans the auction house, ranks your Alchemy recipes by profit and exports your prices and known recipes for the site. /alch
+## Author: Zak Pruitt
+## Version: 1.1
+## X-Website: https://zakpruitt.github.io/alchprofit/
 ## SavedVariables: AlchProfitDB
 
 AlchProfit.lua
