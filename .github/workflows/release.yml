@@ -1,0 +1,108 @@
+name: Build and release
+
+# Only addon changes cut a release; the hourly price refresh and site edits do not.
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'addon/**'
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Version
+        id: ver
+        run: |
+          # Major.minor comes from the .toc; the patch is the run number
+          BASE=$(sed -nE 's/^## Version:[[:space:]]*([0-9]+\.[0-9]+).*/\1/p' addon/WhatToBrew/WhatToBrew.toc)
+          INTERFACES=$(sed -nE 's/^## Interface:[[:space:]]*//p' addon/WhatToBrew/WhatToBrew.toc | head -1 | tr ',' ' ' | xargs)
+          echo "version=${BASE}.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "interfaces=${INTERFACES}" >> "$GITHUB_OUTPUT"
+
+      - name: Package
+        id: pkg
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          ZIP="WhatToBrew-${VERSION}.zip"
+          rm -rf dist && mkdir -p dist
+          cp -r addon/WhatToBrew dist/WhatToBrew
+          sed -i -E "s/^## Version:.*/## Version: ${VERSION}/" dist/WhatToBrew/WhatToBrew.toc
+          (cd dist && zip -qr "../${ZIP}" WhatToBrew)
+          # release.json is what WoWUp reads to match the asset to a game.
+          # Forever interfaces are 16xxx; everything else on the line is retail.
+          for i in ${{ steps.ver.outputs.interfaces }}; do
+            if [ "$i" -ge 16000 ] && [ "$i" -lt 20000 ]; then FLAVOR=forever; else FLAVOR=mainline; fi
+            jq -n --arg flavor "$FLAVOR" --argjson interface "$i" '{flavor: $flavor, interface: $interface}'
+          done | jq -s --arg version "$VERSION" --arg zip "$ZIP" \
+            '{releases: [{name: "WhatToBrew", version: $version, filename: $zip, nolib: false, metadata: .}]}' \
+            > release.json
+          cat release.json
+          echo "zip=${ZIP}" >> "$GITHUB_OUTPUT"
+
+      - name: Release notes
+        run: |
+          PREV=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          {
+            echo "Changes:"
+            echo
+            git log --no-merges --format='- %s' ${PREV:+${PREV}..}HEAD -- addon
+            echo
+            echo "Install or update with WoWUp: **Get Addons -> Install from URL** -> \`${{ github.server_url }}/${{ github.repository }}\`"
+          } > notes.md
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.ver.outputs.version }}" \
+            "${{ steps.pkg.outputs.zip }}" release.json \
+            --title "v${{ steps.ver.outputs.version }}" \
+            --notes-file notes.md \
+            --target "$(git rev-parse HEAD)"
+
+      - name: Upload to CurseForge
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        run: |
+          PROJECT=$(sed -nE 's/^## X-Curse-Project-ID:[[:space:]]*([0-9]+).*/\1/p' addon/WhatToBrew/WhatToBrew.toc)
+          if [ -z "$CF_API_KEY" ] || [ -z "$PROJECT" ]; then
+            echo "::notice::Skipped the CurseForge upload: it needs the CF_API_KEY secret and '## X-Curse-Project-ID' in the .toc"
+            exit 0
+          fi
+          # CurseForge tags files by game version ID, so each interface is looked up by name:
+          # 120100 -> 12.1.0 under retail, 16001 -> 1.60.1 under Forever.
+          VERSIONS=$(curl -fsS -H "x-api-token: $CF_API_KEY" https://wow.curseforge.com/api/game/wow/versions)
+          IDS=()
+          for i in ${{ steps.ver.outputs.interfaces }}; do
+            NAME="$((i / 10000)).$((i / 100 % 100)).$((i % 100))"
+            if [ "$i" -ge 16000 ] && [ "$i" -lt 20000 ]; then TYPE=88568; else TYPE=517; fi
+            ID=$(jq -r --arg v "$NAME" --argjson t "$TYPE" \
+              '[.[] | select(.gameVersionTypeID == $t and .name == $v)][0].id // empty' <<< "$VERSIONS")
+            if [ -z "$ID" ]; then
+              echo "::error::CurseForge has no game version ${NAME} for interface ${i}"
+              exit 1
+            fi
+            echo "interface ${i} -> ${NAME} (id ${ID})"
+            IDS+=("$ID")
+          done
+          jq -n --arg name "${{ steps.ver.outputs.version }}" --rawfile changelog notes.md \
+            --argjson ids "$(printf '%s\n' "${IDS[@]}" | jq -s .)" \
+            '{displayName: $name, gameVersions: $ids, releaseType: "release", changelog: $changelog, changelogType: "markdown"}' \
+            > cf.json
+          curl -fsS --retry 3 --retry-delay 10 -H "x-api-token: $CF_API_KEY" \
+            -F "metadata=<cf.json" -F "file=@${{ steps.pkg.outputs.zip }}" \
+            "https://wow.curseforge.com/api/projects/${PROJECT}/upload-file"

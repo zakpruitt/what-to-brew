@@ -13,7 +13,10 @@ themselves. Everything you paste or tick stays in your browser's localStorage; t
 
 ## Use it
 
-1. Copy `addon/WhatToBrew` into `World of Warcraft/_forever_/Interface/AddOns/`.
+1. Install the addon with WoWUp (**Get Addons -> Install from URL** ->
+   `https://github.com/zakpruitt/what-to-brew`), or unzip the
+   [latest release](https://github.com/zakpruitt/what-to-brew/releases/latest) into
+   `World of Warcraft/_forever_/Interface/AddOns/`.
 2. In game, open your Alchemy window once, then the auction house.
 3. Type `/brew`, press **Scan all** and wait for it to finish.
 4. Press **Export**, Ctrl+C, and paste into "Use my own auction scan" on the site.
@@ -31,7 +34,8 @@ python scripts/update.py --install  # copy the addon into the game's AddOns fold
 ```
 
 The `Refresh prices` GitHub Action runs the script hourly and can be triggered by hand from the
-Actions tab. The site is plain HTML served by GitHub Pages from the repository root.
+Actions tab. A push that touches `addon/` builds a new addon release; the version is the
+`.toc` major.minor plus the run number. The site is plain HTML served by GitHub Pages from the repository root.
 
 ## Data
 
