@@ -63,6 +63,16 @@ tr:last-child td { border-bottom: 0; }
 .tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 9px;
   border: 1px solid currentColor; margin-left: 6px; vertical-align: 1px; }
 .tag.warn { color: var(--warn); } .tag.info { color: var(--accent); }
+details.card { margin-bottom: 14px; }
+details.card summary { cursor: pointer; font-weight: 600; }
+details.card ol.steps { margin: 10px 0; padding-left: 20px; color: var(--muted); font-size: 13.5px; list-style: decimal; }
+details.card ol.steps li { border: 0; padding: 1px 0; }
+textarea { width: 100%; min-height: 70px; background: var(--bg); color: var(--text);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px; font: 12px/1.4 ui-monospace, Consolas, monospace; }
+button { background: var(--panel2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+button.primary { border-color: var(--gold); color: var(--gold); }
+.scanrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
 footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
 </style>
 </head>
@@ -80,6 +90,21 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
     <label><input type="search" id="q" placeholder="Search recipes"></label>
     <span class="sub" id="count"></span>
   </div>
+
+  <details class="card" id="scanCard">
+    <summary>Use my own auction scan <span class="sub" id="scanStatus"></span></summary>
+    <ol class="steps">
+      <li>In game, open your Alchemy window once, then open the auction house.</li>
+      <li>Type <b>/alch</b>, press <b>Scan all</b> and wait for it to finish (a few minutes).</li>
+      <li>Press <b>Export</b>, then Ctrl+C, and paste the text below.</li>
+    </ol>
+    <textarea id="scanText" placeholder="FA1^t=...  (paste the AlchProfit export here)" spellcheck="false"></textarea>
+    <div class="scanrow">
+      <button class="primary" id="scanApply">Use this scan</button>
+      <button id="scanClear">Clear, use HordeLedger prices</button>
+      <span class="sub" id="scanMsg"></span>
+    </div>
+  </details>
 
   <div class="plans">
     <section class="card"><h2>Make today</h2><ol id="planMake"></ol></section>
@@ -112,7 +137,8 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
     Reagent lists: <a href="https://wow-forever.gg/auction-house/crafting/alchemy/">wow-forever.gg</a>.
     Profit is the market price times yield, minus the 5% auction house cut and reagents at market price.
     "Sold/day" is HordeLedger's estimate from consecutive scans; cancelled listings can count as sales.
-    Transmutes are counted as one per day. Recipe prices can lag the live auction house.</p>
+    Transmutes are counted as one per day. Recipe prices can lag the live auction house.
+    With your own scan loaded, prices are the cheapest listing you saw; sales per day still come from HordeLedger.</p>
     <p>Your ticked recipes and settings are stored only in this browser. Fan-made; not affiliated with Blizzard Entertainment.</p>
   </footer>
 </main>
@@ -130,7 +156,55 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
     onlyProfit: store.get("onlyProfit", true), onlyKnown: false, q: "",
     sort: store.get("sort", "daily"), dir: store.get("dir", -1)
   };
-  var data = null, rows = [];
+  var data = null, rows = [], scan = null;
+
+  // AlchProfit export: FA1^t=<unix>^r=<name>~<itemID>;...^p=<id>:<copper>,...^a=...^v=...
+  function parseScan(text) {
+    var parts = String(text || "").trim().split("^");
+    if (parts[0] !== "FA1") throw new Error("That does not look like an AlchProfit export (it should start with FA1).");
+    var out = { t: 0, recipes: [], p: {}, a: {}, v: {} };
+    parts.slice(1).forEach(function (sec) {
+      var i = sec.indexOf("="), k = sec.slice(0, i), val = sec.slice(i + 1);
+      if (k === "t") out.t = +val || 0;
+      else if (k === "r") val.split(";").forEach(function (x) {
+        var j = x.lastIndexOf("~");
+        if (j > 0) out.recipes.push({ name: x.slice(0, j).trim(), out: +x.slice(j + 1) });
+      });
+      else if (k === "p" || k === "a" || k === "v") val.split(",").forEach(function (x) {
+        var m = x.split(":");
+        if (m.length === 2 && +m[1] > 0) out[k][+m[0]] = +m[1];
+      });
+    });
+    out.count = Object.keys(out.p).length + Object.keys(out.a).length;
+    if (!out.count && !out.recipes.length) throw new Error("The export has no prices or recipes in it. Run Scan all first.");
+    return out;
+  }
+  function own(id) {
+    if (!scan) return undefined;
+    return scan.p[id] !== undefined ? scan.p[id] : scan.a[id];
+  }
+  // Tick every recipe the export says you know. Returns how many matched.
+  function tickKnown(sc) {
+    var n = 0;
+    sc.recipes.forEach(function (e) {
+      var c = data.recipes.filter(function (r) { return (r.spell || r.name) === e.name; });
+      if (c.length > 1) c = c.filter(function (r) { return r.itemId === e.out; });
+      if (!c.length) {
+        c = data.recipes.filter(function (r) { return r.itemId === e.out; });
+        if (c.length !== 1) c = [];
+      }
+      c.forEach(function (r) { known.add(r.key); n++; });
+    });
+    store.set("known", Array.from(known));
+    return n;
+  }
+  function scanStatus() {
+    if (!scan) { $("scanStatus").textContent = "· off, using HordeLedger prices"; return; }
+    var h = (Date.now() / 1000 - scan.t) / 3600;
+    var age = !scan.t ? "at an unknown time" : h < 1 ? Math.max(1, Math.round(h * 60)) + " min ago" : h < 48 ? Math.round(h) + " h ago" : Math.round(h / 24) + " days ago";
+    $("scanStatus").innerHTML = "· on: " + scan.count + " of your prices, scanned " +
+      (h > 3 ? "<span class='stale'>" + age + " (rescan)</span>" : age);
+  }
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
 
@@ -156,11 +230,17 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
         transmute: /^Transmute/.test(r.spell || ""), cost: null, sell: null, profit: null,
         margin: null, sold: null, listed: null, daily: null, crafts: null,
         recipeCost: r.recipe ? r.recipe.lowest : null, breakeven: null, payback: null };
-      var priced = r.reagents.length && r.reagents.every(function (x) { return x.price !== null; });
-      if (priced) o.cost = r.reagents.reduce(function (a, x) { return a + x.qty * x.price; }, 0);
-      if (r.sell && r.sell.market !== null) {
-        o.sell = r.sell.market * r.yield; o.sold = r.sell.sold; o.listed = r.sell.listed;
-      }
+      var price = function (x) {
+        var mine = x.vendor ? (scan ? scan.v[x.id] : undefined) : own(x.id);
+        return mine !== undefined ? mine : x.price;
+      };
+      var priced = r.reagents.length && r.reagents.every(function (x) { return price(x) !== null; });
+      if (priced) o.cost = r.reagents.reduce(function (a, x) { return a + x.qty * price(x); }, 0);
+      var mySell = own(r.itemId), myRecipe = r.recipe ? own(r.recipe.id) : undefined;
+      if (myRecipe !== undefined) o.recipeCost = myRecipe;
+      if (r.sell) { o.sold = r.sell.sold; o.listed = r.sell.listed; }
+      if (mySell !== undefined) o.sell = mySell * r.yield;
+      else if (r.sell && r.sell.market !== null) o.sell = r.sell.market * r.yield;
       if (o.cost !== null && o.sell !== null) {
         o.profit = o.sell * (1 - cut) - o.cost;
         o.margin = o.cost > 0 ? o.profit / o.cost : null;
@@ -280,10 +360,30 @@ footer { margin-top: 26px; color: var(--muted); font-size: 12.5px; }
     store.set("sort", state.sort); store.set("dir", state.dir); renderTable();
   });
 
+  $("scanApply").addEventListener("click", function () {
+    try {
+      var sc = parseScan($("scanText").value);
+      scan = sc; store.set("scan", $("scanText").value.trim());
+      var n = tickKnown(sc);
+      $("scanMsg").textContent = "Loaded " + sc.count + " prices and ticked " + n + " of " + sc.recipes.length + " known recipes.";
+      scanStatus(); render();
+    } catch (e) { $("scanMsg").innerHTML = "<span class='stale'>" + esc(e.message) + "</span>"; }
+  });
+  $("scanClear").addEventListener("click", function () {
+    scan = null; store.set("scan", ""); $("scanText").value = "";
+    $("scanMsg").textContent = "Back to HordeLedger prices. Your ticked recipes are kept.";
+    scanStatus(); render();
+  });
+
   fetch("data/data.json?t=" + Date.now()).then(function (r) {
     if (!r.ok) throw new Error("HTTP " + r.status);
     return r.json();
-  }).then(function (d) { data = d; header(); render(); }).catch(function (e) {
+  }).then(function (d) {
+    data = d;
+    var saved = store.get("scan", "");
+    if (saved) { try { scan = parseScan(saved); $("scanText").value = saved; } catch (e) { scan = null; } }
+    header(); scanStatus(); render();
+  }).catch(function (e) {
     $("scan").innerHTML = "<span class='stale'>Could not load data/data.json (" + esc(e.message) + "). Run scripts/update.py.</span>";
   });
 })();

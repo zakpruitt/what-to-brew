@@ -10,6 +10,8 @@ Usage:
     python scripts/update.py            refresh data and print today's summary
     python scripts/update.py --push     also commit and push data/
     python scripts/update.py --recipes  force a recipe re-fetch
+    python scripts/update.py --addon    rebuild the AlchProfit addon's item list
+    python scripts/update.py --install  copy addon/AlchProfit into the game's AddOns folder
 
 Standard library only.
 """
@@ -211,6 +213,40 @@ def summary(data):
           f"{data['ahCut']:.0%} auction house cut. Sorted by profit x estimated daily sales.")
 
 
+ADDON_SRC = ROOT / "addon" / "AlchProfit"
+ADDON_DEST = Path(r"C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns\AlchProfit")
+
+
+def write_addon(data):
+    """Regenerate the addon's item list (everything the page prices) from the recipe data."""
+    ids = set()
+    for r in data["recipes"]:
+        ids.add(r["itemId"])
+        ids.update(x["id"] for x in r["reagents"] if not x["vendor"])
+        if r["recipe"]:
+            ids.add(r["recipe"]["id"])
+    ids = sorted(ids)
+    body = "\n".join("    " + ", ".join(map(str, ids[i:i + 12])) + "," for i in range(0, len(ids), 12))
+    lua = ADDON_SRC / "AlchProfit.lua"
+    block = f"-- SITE_ITEMS_BEGIN\nlocal SITE_ITEMS = {{\n{body}\n}}\n-- SITE_ITEMS_END"
+    src, n = re.subn(r"-- SITE_ITEMS_BEGIN.*?-- SITE_ITEMS_END", lambda _: block,
+                     lua.read_text("utf-8"), flags=re.S)
+    if n != 1:
+        raise SystemExit("SITE_ITEMS markers not found in addon/AlchProfit/AlchProfit.lua")
+    lua.write_text(src, "utf-8", newline="\n")
+    print(f"addon item list: {len(ids)} items")
+
+
+def install_addon():
+    """Copy addon/AlchProfit into the game's AddOns folder."""
+    if not ADDON_DEST.parent.exists():
+        raise SystemExit(f"AddOns folder not found: {ADDON_DEST.parent}")
+    ADDON_DEST.mkdir(exist_ok=True)
+    for f in ADDON_SRC.iterdir():
+        (ADDON_DEST / f.name).write_bytes(f.read_bytes())
+    print(f"installed to {ADDON_DEST} (type /reload in game)")
+
+
 def git(*args):
     return subprocess.run(["git", "-C", str(ROOT), *args], check=True)
 
@@ -232,5 +268,9 @@ if __name__ == "__main__":
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     d = build(force_recipes="--recipes" in sys.argv)
     summary(d)
+    if "--addon" in sys.argv:
+        write_addon(d)
+    if "--install" in sys.argv:
+        install_addon()
     if "--push" in sys.argv:
         push(d)
