@@ -3,6 +3,7 @@
 ## Notes: Companion to zakpruitt.github.io/what-to-brew. Scans the auction house, ranks your Alchemy recipes by profit and exports your prices and known recipes for the site. /brew
 ## Author: Zak Pruitt
 ## Version: 1.2
+## X-Curse-Project-ID: 1816969
 ## IconTexture: Interface\AddOns\WhatToBrew\logo
 ## X-Website: https://zakpruitt.github.io/what-to-brew/
 ## SavedVariables: WhatToBrewDB
