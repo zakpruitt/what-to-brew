@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-20T11:51:40+00:00",
+ "fetched": "2026-11-21T19:25:16+00:00",
  "source": "https://wow-forever.gg/auction-house/crafting/alchemy/",
  "recipes": [
   {
@@ -78,8 +78,8 @@
    ]
   },
   {
-   "name": "Flask of Distilled Wisdom",
-   "itemId": 13511,
+   "name": "Flask of Supreme Power",
+   "itemId": 13512,
    "spell": null,
    "skill": 300,
    "yield": 1,
@@ -91,8 +91,8 @@
      "vendor": null
     },
     {
-     "id": 13467,
-     "name": "Icecap",
+     "id": 13465,
+     "name": "Mountain Silversage",
      "qty": 10,
      "vendor": null
     },
@@ -111,21 +111,21 @@
    ]
   },
   {
-   "name": "Flask of the Titans",
-   "itemId": 13510,
+   "name": "Flask of Distilled Wisdom",
+   "itemId": 13511,
    "spell": null,
    "skill": 300,
    "yield": 1,
    "reagents": [
     {
-     "id": 8846,
-     "name": "Gromsblood",
+     "id": 13463,
+     "name": "Dreamfoil",
      "qty": 30,
      "vendor": null
     },
     {
-     "id": 13423,
-     "name": "Stonescale Oil",
+     "id": 13467,
+     "name": "Icecap",
      "qty": 10,
      "vendor": null
     },
@@ -174,6 +174,66 @@
    ]
   },
   {
+   "name": "Greater Nature Protection Potion",
+   "itemId": 13458,
+   "spell": null,
+   "skill": 290,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 7067,
+     "name": "Elemental Earth",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 13463,
+     "name": "Dreamfoil",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Flask of the Titans",
+   "itemId": 13510,
+   "spell": null,
+   "skill": 300,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8846,
+     "name": "Gromsblood",
+     "qty": 30,
+     "vendor": null
+    },
+    {
+     "id": 13423,
+     "name": "Stonescale Oil",
+     "qty": 10,
+     "vendor": null
+    },
+    {
+     "id": 13468,
+     "name": "Black Lotus",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
    "name": "Essence of Earth",
    "itemId": 7076,
    "spell": "Transmute: Fire to Earth",
@@ -183,6 +243,75 @@
     {
      "id": 7078,
      "name": "Essence of Fire",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Distilled Firewater",
+   "itemId": 246948,
+   "spell": null,
+   "skill": 250,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3819,
+     "name": "Wintersbite",
+     "qty": 4,
+     "vendor": null
+    },
+    {
+     "id": 8846,
+     "name": "Gromsblood",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Greater Stoneshield Potion",
+   "itemId": 13455,
+   "spell": null,
+   "skill": 280,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13423,
+     "name": "Stonescale Oil",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 10620,
+     "name": "Thorium Ore",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Elemental Fire",
+   "itemId": 7068,
+   "spell": "Transmute: Elemental Fire",
+   "skill": 300,
+   "yield": 3,
+   "reagents": [
+    {
+     "id": 7077,
+     "name": "Heart of Fire",
      "qty": 1,
      "vendor": null
     }
@@ -222,33 +351,6 @@
    ]
   },
   {
-   "name": "Alchemy Laboratory",
-   "itemId": 279990,
-   "spell": null,
-   "skill": 300,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 273125,
-     "name": "Lich's Index Finger",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    },
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 2,
-     "vendor": null
-    }
-   ]
-  },
-  {
    "name": "Greater Shadow Protection Potion",
    "itemId": 13459,
    "spell": null,
@@ -272,81 +374,6 @@
      "name": "Crystal Vial",
      "qty": 1,
      "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Flask of Supreme Power",
-   "itemId": 13512,
-   "spell": null,
-   "skill": 300,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 30,
-     "vendor": null
-    },
-    {
-     "id": 13465,
-     "name": "Mountain Silversage",
-     "qty": 10,
-     "vendor": null
-    },
-    {
-     "id": 13468,
-     "name": "Black Lotus",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Distilled Firewater",
-   "itemId": 246948,
-   "spell": null,
-   "skill": 250,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3819,
-     "name": "Wintersbite",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 8846,
-     "name": "Gromsblood",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Essence of Air",
-   "itemId": 7082,
-   "spell": "Transmute: Water to Air",
-   "skill": 275,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 7080,
-     "name": "Essence of Water",
-     "qty": 1,
-     "vendor": null
     }
    ]
   },
@@ -378,21 +405,6 @@
    ]
   },
   {
-   "name": "Elemental Fire",
-   "itemId": 7068,
-   "spell": "Transmute: Elemental Fire",
-   "skill": 300,
-   "yield": 3,
-   "reagents": [
-    {
-     "id": 7077,
-     "name": "Heart of Fire",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
    "name": "Greater Frost Protection Potion",
    "itemId": 13456,
    "spell": null,
@@ -409,33 +421,6 @@
      "id": 13463,
      "name": "Dreamfoil",
      "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Nature Power",
-   "itemId": 250343,
-   "spell": null,
-   "skill": 285,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13464,
-     "name": "Golden Sansam",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 2,
      "vendor": null
     },
     {
@@ -474,6 +459,60 @@
    ]
   },
   {
+   "name": "Elixir of Wicked Regeneration",
+   "itemId": 250336,
+   "spell": null,
+   "skill": 285,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13464,
+     "name": "Golden Sansam",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 13463,
+     "name": "Dreamfoil",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Alchemy Laboratory",
+   "itemId": 279990,
+   "spell": null,
+   "skill": 300,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 273125,
+     "name": "Lich's Index Finger",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    },
+    {
+     "id": 13463,
+     "name": "Dreamfoil",
+     "qty": 2,
+     "vendor": null
+    }
+   ]
+  },
+  {
    "name": "Elixir of the Whale",
    "itemId": 250348,
    "spell": null,
@@ -501,50 +540,56 @@
    ]
   },
   {
-   "name": "Elixir of Intellect",
-   "itemId": 250354,
+   "name": "Gift of Arthas",
+   "itemId": 9088,
    "spell": null,
-   "skill": 135,
+   "skill": 240,
    "yield": 1,
    "reagents": [
     {
-     "id": 3358,
-     "name": "Khadgar's Whisker",
-     "qty": 3,
+     "id": 8836,
+     "name": "Arthas' Tears",
+     "qty": 1,
      "vendor": null
     },
     {
-     "id": 3372,
-     "name": "Leaded Vial",
+     "id": 8839,
+     "name": "Blindweed",
      "qty": 1,
-     "vendor": 200
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
     }
    ]
   },
   {
-   "name": "Greater Frenzy Potion",
-   "itemId": 250941,
+   "name": "Greater Arcane Elixir",
+   "itemId": 13454,
    "spell": null,
-   "skill": 190,
+   "skill": 285,
    "yield": 1,
    "reagents": [
     {
-     "id": 4625,
-     "name": "Firebloom",
+     "id": 13463,
+     "name": "Dreamfoil",
      "qty": 3,
      "vendor": null
     },
     {
-     "id": 3818,
-     "name": "Fadeleaf",
-     "qty": 2,
+     "id": 13465,
+     "name": "Mountain Silversage",
+     "qty": 1,
      "vendor": null
     },
     {
-     "id": 3372,
-     "name": "Leaded Vial",
+     "id": 8925,
+     "name": "Crystal Vial",
      "qty": 1,
-     "vendor": 200
+     "vendor": 2500
     }
    ]
   },
@@ -564,6 +609,60 @@
     {
      "id": 3358,
      "name": "Khadgar's Whisker",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Nature Power",
+   "itemId": 250343,
+   "spell": null,
+   "skill": 285,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13464,
+     "name": "Golden Sansam",
+     "qty": 4,
+     "vendor": null
+    },
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Greater Frenzy Potion",
+   "itemId": 250941,
+   "spell": null,
+   "skill": 190,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 4625,
+     "name": "Firebloom",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 3818,
+     "name": "Fadeleaf",
      "qty": 2,
      "vendor": null
     },
@@ -603,8 +702,8 @@
    ]
   },
   {
-   "name": "Elixir of Brute Force",
-   "itemId": 13453,
+   "name": "Elixir of Ferocity",
+   "itemId": 250350,
    "spell": null,
    "skill": 275,
    "yield": 1,
@@ -612,13 +711,13 @@
     {
      "id": 8846,
      "name": "Gromsblood",
-     "qty": 2,
+     "qty": 3,
      "vendor": null
     },
     {
-     "id": 13466,
-     "name": "Plaguebloom",
-     "qty": 2,
+     "id": 8845,
+     "name": "Ghost Mushroom",
+     "qty": 1,
      "vendor": null
     },
     {
@@ -657,22 +756,49 @@
    ]
   },
   {
-   "name": "Frenzy Potion",
-   "itemId": 250940,
+   "name": "Elixir of Strength",
+   "itemId": 250349,
    "spell": null,
-   "skill": 140,
+   "skill": 150,
    "yield": 1,
    "reagents": [
     {
-     "id": 3818,
-     "name": "Fadeleaf",
-     "qty": 2,
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 3,
+     "vendor": 200
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
      "vendor": null
     },
     {
-     "id": 2450,
-     "name": "Briarthorn",
-     "qty": 2,
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Goblin Rocket Fuel",
+   "itemId": 9061,
+   "spell": null,
+   "skill": 210,
+   "yield": 2,
+   "reagents": [
+    {
+     "id": 4625,
+     "name": "Firebloom",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 9260,
+     "name": "Volatile Rum",
+     "qty": 1,
      "vendor": null
     },
     {
@@ -711,29 +837,17 @@
    ]
   },
   {
-   "name": "Elixir of Ferocity",
-   "itemId": 250350,
-   "spell": null,
-   "skill": 275,
+   "name": "Gold Bar",
+   "itemId": 3577,
+   "spell": "Transmute: Iron to Gold",
+   "skill": 225,
    "yield": 1,
    "reagents": [
     {
-     "id": 8846,
-     "name": "Gromsblood",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8845,
-     "name": "Ghost Mushroom",
+     "id": 3575,
+     "name": "Iron Bar",
      "qty": 1,
      "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
     }
    ]
   },
@@ -765,50 +879,107 @@
    ]
   },
   {
-   "name": "Mighty Rage Potion",
-   "itemId": 13442,
+   "name": "Cerulean Dye",
+   "itemId": 249409,
    "spell": null,
-   "skill": 255,
+   "skill": null,
    "yield": 1,
    "reagents": [
     {
-     "id": 8846,
-     "name": "Gromsblood",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of the Phalanx",
-   "itemId": 250329,
-   "spell": null,
-   "skill": 250,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13464,
-     "name": "Golden Sansam",
+     "id": 249399,
+     "name": "Frilled Lichen",
      "qty": 2,
      "vendor": null
     },
     {
-     "id": 8838,
-     "name": "Sungrass",
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Stonescale Oil",
+   "itemId": 13423,
+   "spell": null,
+   "skill": null,
+   "yield": 2,
+   "reagents": [
+    {
+     "id": 13422,
+     "name": "Stonescale Eel",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Frenzy Potion",
+   "itemId": 250940,
+   "spell": null,
+   "skill": 140,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3818,
+     "name": "Fadeleaf",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Truesilver Bar",
+   "itemId": 6037,
+   "spell": "Transmute: Mithril to Truesilver",
+   "skill": 225,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3860,
+     "name": "Mithril Bar",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Fortitude",
+   "itemId": 250334,
+   "spell": null,
+   "skill": 150,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3821,
+     "name": "Goldthorn",
      "qty": 4,
      "vendor": null
     },
     {
-     "id": 8925,
-     "name": "Crystal Vial",
+     "id": 3372,
+     "name": "Leaded Vial",
      "qty": 1,
-     "vendor": 2500
+     "vendor": 200
     }
    ]
   },
@@ -829,87 +1000,6 @@
      "id": 8846,
      "name": "Gromsblood",
      "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Greater Mageblood Elixir",
-   "itemId": 250341,
-   "spell": null,
-   "skill": 175,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8839,
-     "name": "Blindweed",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8836,
-     "name": "Arthas' Tears",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Shadow Oil",
-   "itemId": 3824,
-   "spell": null,
-   "skill": 165,
-   "yield": 2,
-   "reagents": [
-    {
-     "id": 3818,
-     "name": "Fadeleaf",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 3369,
-     "name": "Grave Moss",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Elixir of the Grizzly",
-   "itemId": 250351,
-   "spell": null,
-   "skill": 300,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8846,
-     "name": "Gromsblood",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8839,
-     "name": "Blindweed",
-     "qty": 1,
      "vendor": null
     },
     {
@@ -948,32 +1038,50 @@
    ]
   },
   {
-   "name": "Gold Bar",
-   "itemId": 3577,
-   "spell": "Transmute: Iron to Gold",
-   "skill": 225,
+   "name": "Elixir of the Phalanx",
+   "itemId": 250329,
+   "spell": null,
+   "skill": 250,
    "yield": 1,
    "reagents": [
     {
-     "id": 3575,
-     "name": "Iron Bar",
-     "qty": 1,
+     "id": 13464,
+     "name": "Golden Sansam",
+     "qty": 2,
      "vendor": null
+    },
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 4,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
     }
    ]
   },
   {
-   "name": "Cerulean Dye",
-   "itemId": 249409,
+   "name": "Elixir of Lesser Spirit",
+   "itemId": 250345,
    "spell": null,
-   "skill": null,
+   "skill": 65,
    "yield": 1,
    "reagents": [
     {
-     "id": 249399,
-     "name": "Frilled Lichen",
+     "id": 3355,
+     "name": "Wild Steelbloom",
      "qty": 2,
-     "vendor": null
+     "vendor": 200
+    },
+    {
+     "id": 785,
+     "name": "Mageroyal",
+     "qty": 1,
+     "vendor": 80
     },
     {
      "id": 3371,
@@ -984,23 +1092,38 @@
    ]
   },
   {
-   "name": "Elixir of Defense",
-   "itemId": 8951,
+   "name": "Lesser Mageblood Elixir",
+   "itemId": 250340,
    "spell": null,
-   "skill": null,
+   "skill": 75,
    "yield": 1,
    "reagents": [
     {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 1,
-     "vendor": 200
+     "id": 3356,
+     "name": "Kingsblood",
+     "qty": 3,
+     "vendor": 120
     },
     {
-     "id": 3821,
-     "name": "Goldthorn",
+     "id": 3371,
+     "name": "Empty Vial",
      "qty": 1,
-     "vendor": null
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Lesser Arcane Elixir",
+   "itemId": 250342,
+   "spell": null,
+   "skill": 120,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3356,
+     "name": "Kingsblood",
+     "qty": 4,
+     "vendor": 120
     },
     {
      "id": 3372,
@@ -1011,15 +1134,21 @@
    ]
   },
   {
-   "name": "Elixir of Fortitude",
-   "itemId": 250334,
+   "name": "Shadow Oil",
+   "itemId": 3824,
    "spell": null,
-   "skill": 150,
-   "yield": 1,
+   "skill": 165,
+   "yield": 2,
    "reagents": [
     {
-     "id": 3821,
-     "name": "Goldthorn",
+     "id": 3818,
+     "name": "Fadeleaf",
+     "qty": 4,
+     "vendor": null
+    },
+    {
+     "id": 3369,
+     "name": "Grave Moss",
      "qty": 4,
      "vendor": null
     },
@@ -1032,38 +1161,17 @@
    ]
   },
   {
-   "name": "Truesilver Bar",
-   "itemId": 6037,
-   "spell": "Transmute: Mithril to Truesilver",
-   "skill": 225,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3860,
-     "name": "Mithril Bar",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
-   "name": "Catseye Draught",
-   "itemId": 10592,
+   "name": "Elixir of Lesser Intellect",
+   "itemId": 250353,
    "spell": null,
-   "skill": null,
+   "skill": 95,
    "yield": 1,
    "reagents": [
     {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3818,
-     "name": "Fadeleaf",
-     "qty": 1,
-     "vendor": null
+     "id": 3356,
+     "name": "Kingsblood",
+     "qty": 3,
+     "vendor": 120
     },
     {
      "id": 3372,
@@ -1074,22 +1182,91 @@
    ]
   },
   {
-   "name": "Greater Arcane Elixir",
-   "itemId": 13454,
+   "name": "Elixir of Minor Spirit",
+   "itemId": 250344,
    "spell": null,
-   "skill": 285,
+   "skill": 15,
    "yield": 1,
    "reagents": [
     {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 3,
+     "id": 2449,
+     "name": "Earthroot",
+     "qty": 2,
+     "vendor": 80
+    },
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Mana Well",
+   "itemId": 279956,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Giant Growth",
+   "itemId": 6662,
+   "spell": null,
+   "skill": 90,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 6522,
+     "name": "Deviate Fish",
+     "qty": 1,
      "vendor": null
     },
     {
-     "id": 13465,
-     "name": "Mountain Silversage",
+     "id": 2449,
+     "name": "Earthroot",
      "qty": 1,
+     "vendor": 80
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Greater Fortitude",
+   "itemId": 250335,
+   "spell": null,
+   "skill": 200,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 4,
      "vendor": null
     },
     {
@@ -1101,29 +1278,83 @@
    ]
   },
   {
-   "name": "Ghost Dye",
-   "itemId": 9210,
+   "name": "Greater Discolored Healing Potion",
+   "itemId": 247241,
    "spell": null,
-   "skill": 245,
-   "yield": 2,
+   "skill": null,
+   "yield": 1,
    "reagents": [
     {
-     "id": 8845,
-     "name": "Ghost Mushroom",
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3356,
+     "name": "Kingsblood",
+     "qty": 1,
+     "vendor": 120
+    },
+    {
+     "id": 730,
+     "name": "Murloc Eye",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Lesser Spellblasting Potion",
+   "itemId": 250933,
+   "spell": null,
+   "skill": 85,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 785,
+     "name": "Mageroyal",
+     "qty": 1,
+     "vendor": 80
+    },
+    {
+     "id": 765,
+     "name": "Silverleaf",
      "qty": 2,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Spellblasting Potion",
+   "itemId": 250934,
+   "spell": null,
+   "skill": 135,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3369,
+     "name": "Grave Moss",
+     "qty": 1,
      "vendor": null
     },
     {
-     "id": 4342,
-     "name": "Purple Dye",
+     "id": 3371,
+     "name": "Empty Vial",
      "qty": 1,
-     "vendor": 2500
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
+     "vendor": 20
     }
    ]
   },
@@ -1144,27 +1375,6 @@
      "id": 3356,
      "name": "Kingsblood",
      "qty": 1,
-     "vendor": 120
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Lesser Arcane Elixir",
-   "itemId": 250342,
-   "spell": null,
-   "skill": 120,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 4,
      "vendor": 120
     },
     {
@@ -1203,23 +1413,44 @@
    ]
   },
   {
-   "name": "Lesser Mageblood Elixir",
-   "itemId": 250340,
+   "name": "Minor Mageblood Elixir",
+   "itemId": 250339,
    "spell": null,
-   "skill": 75,
+   "skill": 25,
    "yield": 1,
    "reagents": [
     {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 3,
-     "vendor": 120
+     "id": 785,
+     "name": "Mageroyal",
+     "qty": 2,
+     "vendor": 80
     },
     {
      "id": 3371,
      "name": "Empty Vial",
      "qty": 1,
      "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Magenta Dye",
+   "itemId": 249430,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 249424,
+     "name": "Rosecap",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
     }
    ]
   },
@@ -1251,45 +1482,12 @@
    ]
   },
   {
-   "name": "Spellblasting Potion",
-   "itemId": 250934,
+   "name": "Minor Arcane Elixir",
+   "itemId": 247754,
    "spell": null,
-   "skill": 135,
+   "skill": null,
    "yield": 1,
    "reagents": [
-    {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 1,
-     "vendor": 200
-    },
-    {
-     "id": 3369,
-     "name": "Grave Moss",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Minor Spirit",
-   "itemId": 250344,
-   "spell": null,
-   "skill": 15,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 2,
-     "vendor": 80
-    },
     {
      "id": 2447,
      "name": "Peacebloom",
@@ -1301,318 +1499,6 @@
      "name": "Empty Vial",
      "qty": 1,
      "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Greater Discolored Healing Potion",
-   "itemId": 247241,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    },
-    {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 1,
-     "vendor": 120
-    },
-    {
-     "id": 730,
-     "name": "Murloc Eye",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Giant Growth",
-   "itemId": 6662,
-   "spell": null,
-   "skill": 90,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 6522,
-     "name": "Deviate Fish",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Swiftness Potion",
-   "itemId": 2459,
-   "spell": null,
-   "skill": 60,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2452,
-     "name": "Swiftthistle",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 2450,
-     "name": "Briarthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Strength",
-   "itemId": 250349,
-   "spell": null,
-   "skill": 150,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 3,
-     "vendor": 200
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Lesser Spellblasting Potion",
-   "itemId": 250933,
-   "spell": null,
-   "skill": 85,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 785,
-     "name": "Mageroyal",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 2,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Sulfuric Acid",
-   "itemId": 249410,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 249391,
-     "name": "Pyrite",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Ogre Strength",
-   "itemId": 3391,
-   "spell": null,
-   "skill": 150,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 1,
-     "vendor": 120
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Minor Agility",
-   "itemId": 2457,
-   "spell": null,
-   "skill": 50,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2452,
-     "name": "Swiftthistle",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Goblin Rocket Fuel",
-   "itemId": 9061,
-   "spell": null,
-   "skill": 210,
-   "yield": 2,
-   "reagents": [
-    {
-     "id": 4625,
-     "name": "Firebloom",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 9260,
-     "name": "Volatile Rum",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Shadow Protection Potion",
-   "itemId": 6048,
-   "spell": null,
-   "skill": 135,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3369,
-     "name": "Grave Moss",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 1,
-     "vendor": 120
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Frost Protection Potion",
-   "itemId": 6050,
-   "spell": null,
-   "skill": 190,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3819,
-     "name": "Wintersbite",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Magenta Dye",
-   "itemId": 249430,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 249424,
-     "name": "Rosecap",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
     }
    ]
   },
@@ -1644,75 +1530,6 @@
    ]
   },
   {
-   "name": "Elixir of Lesser Spirit",
-   "itemId": 250345,
-   "spell": null,
-   "skill": 65,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 2,
-     "vendor": 200
-    },
-    {
-     "id": 785,
-     "name": "Mageroyal",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Lesser Intellect",
-   "itemId": 250353,
-   "spell": null,
-   "skill": 95,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 3,
-     "vendor": 120
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Minor Mageblood Elixir",
-   "itemId": 250339,
-   "spell": null,
-   "skill": 25,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 785,
-     "name": "Mageroyal",
-     "qty": 2,
-     "vendor": 80
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
    "name": "Blackmouth Oil",
    "itemId": 6370,
    "spell": null,
@@ -1734,15 +1551,21 @@
    ]
   },
   {
-   "name": "Minor Arcane Elixir",
-   "itemId": 247754,
+   "name": "Elixir of Minor Agility",
+   "itemId": 2457,
    "spell": null,
-   "skill": null,
+   "skill": 50,
    "yield": 1,
    "reagents": [
     {
-     "id": 2447,
-     "name": "Peacebloom",
+     "id": 2452,
+     "name": "Swiftthistle",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 765,
+     "name": "Silverleaf",
      "qty": 1,
      "vendor": 40
     },
@@ -1751,33 +1574,6 @@
      "name": "Empty Vial",
      "qty": 1,
      "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Agility",
-   "itemId": 8949,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3820,
-     "name": "Stranglekelp",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
     }
    ]
   },
@@ -1809,6 +1605,33 @@
    ]
   },
   {
+   "name": "Elixir of Lesser Fortitude",
+   "itemId": 3825,
+   "spell": null,
+   "skill": 175,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
    "name": "Minor Mender's Potion",
    "itemId": 250944,
    "spell": null,
@@ -1836,71 +1659,23 @@
    ]
   },
   {
-   "name": "Minor Spellblasting Potion",
-   "itemId": 250932,
+   "name": "Shadow Protection Potion",
+   "itemId": 6048,
    "spell": null,
-   "skill": 35,
+   "skill": 135,
    "yield": 1,
    "reagents": [
     {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 2447,
-     "name": "Peacebloom",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Mana Well",
-   "itemId": 279956,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2447,
-     "name": "Peacebloom",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Lesser Invisibility Potion",
-   "itemId": 3823,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3818,
-     "name": "Fadeleaf",
+     "id": 3369,
+     "name": "Grave Moss",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 3355,
-     "name": "Wild Steelbloom",
+     "id": 3356,
+     "name": "Kingsblood",
      "qty": 1,
-     "vendor": 200
+     "vendor": 120
     },
     {
      "id": 3372,
@@ -1911,221 +1686,23 @@
    ]
   },
   {
-   "name": "Fire Oil",
-   "itemId": 6371,
-   "spell": null,
-   "skill": null,
-   "yield": 2,
-   "reagents": [
-    {
-     "id": 6359,
-     "name": "Firefin Snapper",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Minor Strength",
-   "itemId": 2454,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Minor Frenzy Potion",
-   "itemId": 250938,
-   "spell": null,
-   "skill": 40,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Minor Discolored Healing Potion",
-   "itemId": 4596,
-   "spell": null,
-   "skill": 50,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    },
-    {
-     "id": 2447,
-     "name": "Peacebloom",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 730,
-     "name": "Murloc Eye",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Minor Force",
-   "itemId": 247755,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 765,
-     "name": "Silverleaf",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Free Action Potion",
-   "itemId": 5634,
+   "name": "Elixir of Ogre Strength",
+   "itemId": 3391,
    "spell": null,
    "skill": 150,
    "yield": 1,
    "reagents": [
     {
-     "id": 6370,
-     "name": "Blackmouth Oil",
-     "qty": 2,
-     "vendor": null
+     "id": 2449,
+     "name": "Earthroot",
+     "qty": 1,
+     "vendor": 80
     },
     {
-     "id": 3820,
-     "name": "Stranglekelp",
+     "id": 3356,
+     "name": "Kingsblood",
      "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Lesser Agility",
-   "itemId": 3390,
-   "spell": null,
-   "skill": 140,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 1,
-     "vendor": 200
-    },
-    {
-     "id": 2452,
-     "name": "Swiftthistle",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Lesser Defense",
-   "itemId": 3389,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 1,
-     "vendor": 200
-    },
-    {
-     "id": 3820,
-     "name": "Stranglekelp",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Stonescale Oil",
-   "itemId": 13423,
-   "spell": null,
-   "skill": null,
-   "yield": 2,
-   "reagents": [
-    {
-     "id": 13422,
-     "name": "Stonescale Eel",
-     "qty": 1,
-     "vendor": null
+     "vendor": 120
     },
     {
      "id": 3372,
@@ -2163,6 +1740,318 @@
    ]
   },
   {
+   "name": "Minor Spellblasting Potion",
+   "itemId": 250932,
+   "spell": null,
+   "skill": 35,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 765,
+     "name": "Silverleaf",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Swiftness Potion",
+   "itemId": 2459,
+   "spell": null,
+   "skill": 60,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2452,
+     "name": "Swiftthistle",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Minor Troll's Blood Elixir",
+   "itemId": 3382,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 2449,
+     "name": "Earthroot",
+     "qty": 2,
+     "vendor": 80
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Fire Oil",
+   "itemId": 6371,
+   "spell": null,
+   "skill": null,
+   "yield": 2,
+   "reagents": [
+    {
+     "id": 6359,
+     "name": "Firefin Snapper",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Minor Frenzy Potion",
+   "itemId": 250938,
+   "spell": null,
+   "skill": 40,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2449,
+     "name": "Earthroot",
+     "qty": 1,
+     "vendor": 80
+    },
+    {
+     "id": 765,
+     "name": "Silverleaf",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Minor Force",
+   "itemId": 247755,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 765,
+     "name": "Silverleaf",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Minor Strength",
+   "itemId": 2454,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2449,
+     "name": "Earthroot",
+     "qty": 1,
+     "vendor": 80
+    },
+    {
+     "id": 765,
+     "name": "Silverleaf",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Greater Mageblood Elixir",
+   "itemId": 250341,
+   "spell": null,
+   "skill": 175,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8839,
+     "name": "Blindweed",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8836,
+     "name": "Arthas' Tears",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Minor Discolored Healing Potion",
+   "itemId": 4596,
+   "spell": null,
+   "skill": 50,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    },
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 730,
+     "name": "Murloc Eye",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Frost Protection Potion",
+   "itemId": 6050,
+   "spell": null,
+   "skill": 190,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3819,
+     "name": "Wintersbite",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Lesser Invisibility Potion",
+   "itemId": 3823,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3818,
+     "name": "Fadeleaf",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Free Action Potion",
+   "itemId": 5634,
+   "spell": null,
+   "skill": 150,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 6370,
+     "name": "Blackmouth Oil",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3820,
+     "name": "Stranglekelp",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
    "name": "Elixir of Minor Defense",
    "itemId": 5997,
    "spell": null,
@@ -2190,22 +2079,16 @@
    ]
   },
   {
-   "name": "Elixir of Lesser Fortitude",
-   "itemId": 3825,
+   "name": "Elixir of Intellect",
+   "itemId": 250354,
    "spell": null,
-   "skill": 175,
+   "skill": 135,
    "yield": 1,
    "reagents": [
     {
-     "id": 3355,
-     "name": "Wild Steelbloom",
-     "qty": 1,
-     "vendor": 200
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
+     "id": 3358,
+     "name": "Khadgar's Whisker",
+     "qty": 3,
      "vendor": null
     },
     {
@@ -2244,83 +2127,56 @@
    ]
   },
   {
-   "name": "Minor Troll's Blood Elixir",
-   "itemId": 3382,
+   "name": "Elixir of Lesser Agility",
+   "itemId": 3390,
    "spell": null,
-   "skill": null,
+   "skill": 140,
    "yield": 1,
    "reagents": [
     {
-     "id": 2447,
-     "name": "Peacebloom",
+     "id": 3355,
+     "name": "Wild Steelbloom",
      "qty": 1,
-     "vendor": 40
+     "vendor": 200
     },
     {
-     "id": 2449,
-     "name": "Earthroot",
-     "qty": 2,
-     "vendor": 80
+     "id": 2452,
+     "name": "Swiftthistle",
+     "qty": 1,
+     "vendor": null
     },
     {
-     "id": 3371,
-     "name": "Empty Vial",
+     "id": 3372,
+     "name": "Leaded Vial",
      "qty": 1,
-     "vendor": 20
+     "vendor": 200
     }
    ]
   },
   {
-   "name": "Rage Potion",
-   "itemId": 5631,
+   "name": "Lesser Stoneshield Potion",
+   "itemId": 4623,
    "spell": null,
-   "skill": 60,
+   "skill": 215,
    "yield": 1,
    "reagents": [
     {
-     "id": 5635,
-     "name": "Sharp Claw",
+     "id": 3858,
+     "name": "Mithril Ore",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 2450,
-     "name": "Briarthorn",
+     "id": 3821,
+     "name": "Goldthorn",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 3371,
-     "name": "Empty Vial",
+     "id": 3372,
+     "name": "Leaded Vial",
      "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Lesser Discolored Healing Potion",
-   "itemId": 247239,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    },
-    {
-     "id": 2450,
-     "name": "Briarthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 730,
-     "name": "Murloc Eye",
-     "qty": 1,
-     "vendor": null
+     "vendor": 200
     }
    ]
   },
@@ -2334,6 +2190,81 @@
     {
      "id": 2449,
      "name": "Earthroot",
+     "qty": 2,
+     "vendor": 80
+    },
+    {
+     "id": 2447,
+     "name": "Peacebloom",
+     "qty": 1,
+     "vendor": 40
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Lesser Defense",
+   "itemId": 3389,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3820,
+     "name": "Stranglekelp",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Sulfuric Acid",
+   "itemId": 249410,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 249391,
+     "name": "Pyrite",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Minor Rejuvenation Potion",
+   "itemId": 2456,
+   "spell": null,
+   "skill": 40,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 785,
+     "name": "Mageroyal",
      "qty": 2,
      "vendor": 80
     },
@@ -2379,6 +2310,189 @@
    ]
   },
   {
+   "name": "Elixir of Agility",
+   "itemId": 8949,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3820,
+     "name": "Stranglekelp",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Catseye Draught",
+   "itemId": 10592,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3818,
+     "name": "Fadeleaf",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Shadow Power",
+   "itemId": 9264,
+   "spell": null,
+   "skill": 250,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8845,
+     "name": "Ghost Mushroom",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Rage Potion",
+   "itemId": 5631,
+   "spell": null,
+   "skill": 60,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 5635,
+     "name": "Sharp Claw",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Lesser Troll's Blood Elixir",
+   "itemId": 3388,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2453,
+     "name": "Bruiseweed",
+     "qty": 2,
+     "vendor": 100
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Lesser Discolored Healing Potion",
+   "itemId": 247239,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 730,
+     "name": "Murloc Eye",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Fire Protection Potion",
+   "itemId": 6049,
+   "spell": null,
+   "skill": 165,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 4402,
+     "name": "Small Flame Sac",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 6371,
+     "name": "Fire Oil",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
    "name": "Great Rage Potion",
    "itemId": 5633,
    "spell": null,
@@ -2402,87 +2516,6 @@
      "name": "Leaded Vial",
      "qty": 1,
      "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Greater Mana Potion",
-   "itemId": 6149,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3358,
-     "name": "Khadgar's Whisker",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Minor Rejuvenation Potion",
-   "itemId": 2456,
-   "spell": null,
-   "skill": 40,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 785,
-     "name": "Mageroyal",
-     "qty": 2,
-     "vendor": 80
-    },
-    {
-     "id": 2447,
-     "name": "Peacebloom",
-     "qty": 1,
-     "vendor": 40
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Wisdom",
-   "itemId": 3383,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 785,
-     "name": "Mageroyal",
-     "qty": 1,
-     "vendor": 80
-    },
-    {
-     "id": 2450,
-     "name": "Briarthorn",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3371,
-     "name": "Empty Vial",
-     "qty": 1,
-     "vendor": 20
     }
    ]
   },
@@ -2514,6 +2547,33 @@
    ]
   },
   {
+   "name": "Elixir of Fire Power",
+   "itemId": 6373,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 6371,
+     "name": "Fire Oil",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3356,
+     "name": "Kingsblood",
+     "qty": 1,
+     "vendor": 120
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
    "name": "Lesser Mender's Potion",
    "itemId": 250945,
    "spell": null,
@@ -2541,23 +2601,77 @@
    ]
   },
   {
-   "name": "Elixir of Fire Power",
-   "itemId": 6373,
+   "name": "Elixir of Brute Force",
+   "itemId": 13453,
+   "spell": null,
+   "skill": 275,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8846,
+     "name": "Gromsblood",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 13466,
+     "name": "Plaguebloom",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Defense",
+   "itemId": 8951,
    "spell": null,
    "skill": null,
    "yield": 1,
    "reagents": [
     {
-     "id": 6371,
-     "name": "Fire Oil",
+     "id": 3355,
+     "name": "Wild Steelbloom",
+     "qty": 1,
+     "vendor": 200
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Mender's Potion",
+   "itemId": 250946,
+   "spell": null,
+   "skill": 130,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3819,
+     "name": "Wintersbite",
      "qty": 2,
      "vendor": null
     },
     {
-     "id": 3356,
-     "name": "Kingsblood",
-     "qty": 1,
-     "vendor": 120
+     "id": 4625,
+     "name": "Firebloom",
+     "qty": 2,
+     "vendor": null
     },
     {
      "id": 3372,
@@ -2591,6 +2705,60 @@
      "name": "Leaded Vial",
      "qty": 1,
      "vendor": 200
+    }
+   ]
+  },
+  {
+   "name": "Major Mana Potion",
+   "itemId": 13444,
+   "spell": null,
+   "skill": 295,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13463,
+     "name": "Dreamfoil",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 13467,
+     "name": "Icecap",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Wisdom",
+   "itemId": 3383,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 785,
+     "name": "Mageroyal",
+     "qty": 1,
+     "vendor": 80
+    },
+    {
+     "id": 2450,
+     "name": "Briarthorn",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
     }
    ]
   },
@@ -2649,6 +2817,27 @@
    ]
   },
   {
+   "name": "Mighty Rage Potion",
+   "itemId": 13442,
+   "spell": null,
+   "skill": 255,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8846,
+     "name": "Gromsblood",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
    "name": "Draught of Water Breathing",
    "itemId": 5996,
    "spell": null,
@@ -2676,91 +2865,10 @@
    ]
   },
   {
-   "name": "Mender's Potion",
-   "itemId": 250946,
-   "spell": null,
-   "skill": 130,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 3819,
-     "name": "Wintersbite",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 4625,
-     "name": "Firebloom",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Lesser Troll's Blood Elixir",
-   "itemId": 3388,
+   "name": "Greater Mana Potion",
+   "itemId": 6149,
    "spell": null,
    "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 2453,
-     "name": "Bruiseweed",
-     "qty": 2,
-     "vendor": 100
-    },
-    {
-     "id": 2450,
-     "name": "Briarthorn",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Fire Protection Potion",
-   "itemId": 6049,
-   "spell": null,
-   "skill": 165,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 4402,
-     "name": "Small Flame Sac",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 6371,
-     "name": "Fire Oil",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Magic Resistance Potion",
-   "itemId": 9036,
-   "spell": null,
-   "skill": 210,
    "yield": 1,
    "reagents": [
     {
@@ -2770,16 +2878,16 @@
      "vendor": null
     },
     {
-     "id": 8831,
-     "name": "Purple Lotus",
+     "id": 3821,
+     "name": "Goldthorn",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 8925,
-     "name": "Crystal Vial",
+     "id": 3372,
+     "name": "Leaded Vial",
      "qty": 1,
-     "vendor": 2500
+     "vendor": 200
     }
    ]
   },
@@ -2811,49 +2919,16 @@
    ]
   },
   {
-   "name": "Potion of Predatory Senses",
-   "itemId": 250327,
+   "name": "Viridian Dye",
+   "itemId": 249431,
    "spell": null,
-   "skill": 195,
+   "skill": null,
    "yield": 1,
    "reagents": [
     {
-     "id": 3818,
-     "name": "Fadeleaf",
+     "id": 249274,
+     "name": "Stranglevine",
      "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Greater Arcane Protection Potion",
-   "itemId": 13461,
-   "spell": null,
-   "skill": 290,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 11176,
-     "name": "Dream Dust",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 1,
      "vendor": null
     },
     {
@@ -2861,6 +2936,75 @@
      "name": "Crystal Vial",
      "qty": 1,
      "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Superior Discolored Healing Potion",
+   "itemId": 247242,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    },
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 730,
+     "name": "Murloc Eye",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Holy Protection Potion",
+   "itemId": 6051,
+   "spell": null,
+   "skill": 100,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 2453,
+     "name": "Bruiseweed",
+     "qty": 1,
+     "vendor": 100
+    },
+    {
+     "id": 2452,
+     "name": "Swiftthistle",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3371,
+     "name": "Empty Vial",
+     "qty": 1,
+     "vendor": 20
+    }
+   ]
+  },
+  {
+   "name": "Essence of Water",
+   "itemId": 7080,
+   "spell": "Transmute: Earth to Water",
+   "skill": 275,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 7076,
+     "name": "Essence of Earth",
+     "qty": 1,
+     "vendor": null
     }
    ]
   },
@@ -2919,29 +3063,56 @@
    ]
   },
   {
-   "name": "Holy Protection Potion",
-   "itemId": 6051,
+   "name": "Greater Arcane Protection Potion",
+   "itemId": 13461,
    "spell": null,
-   "skill": 100,
+   "skill": 290,
    "yield": 1,
    "reagents": [
     {
-     "id": 2453,
-     "name": "Bruiseweed",
-     "qty": 1,
-     "vendor": 100
-    },
-    {
-     "id": 2452,
-     "name": "Swiftthistle",
+     "id": 11176,
+     "name": "Dream Dust",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 3371,
-     "name": "Empty Vial",
+     "id": 13463,
+     "name": "Dreamfoil",
      "qty": 1,
-     "vendor": 20
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Potion of Predatory Senses",
+   "itemId": 250327,
+   "spell": null,
+   "skill": 195,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 3818,
+     "name": "Fadeleaf",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 3372,
+     "name": "Leaded Vial",
+     "qty": 1,
+     "vendor": 200
     }
    ]
   },
@@ -2973,228 +3144,66 @@
    ]
   },
   {
-   "name": "Lesser Stoneshield Potion",
-   "itemId": 4623,
+   "name": "Elixir of the Grizzly",
+   "itemId": 250351,
    "spell": null,
-   "skill": 215,
+   "skill": 300,
    "yield": 1,
    "reagents": [
     {
-     "id": 3858,
-     "name": "Mithril Ore",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3372,
-     "name": "Leaded Vial",
-     "qty": 1,
-     "vendor": 200
-    }
-   ]
-  },
-  {
-   "name": "Invisibility Potion",
-   "itemId": 9172,
-   "spell": null,
-   "skill": 235,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8845,
-     "name": "Ghost Mushroom",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Greater Fortitude",
-   "itemId": 250335,
-   "spell": null,
-   "skill": 200,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Superior Discolored Healing Potion",
-   "itemId": 247242,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    },
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 730,
-     "name": "Murloc Eye",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Holy Power",
-   "itemId": 21546,
-   "spell": null,
-   "skill": 250,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 6371,
-     "name": "Fire Oil",
+     "id": 8846,
+     "name": "Gromsblood",
      "qty": 3,
      "vendor": null
     },
-    {
-     "id": 4625,
-     "name": "Firebloom",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Limited Invulnerability Potion",
-   "itemId": 3387,
-   "spell": null,
-   "skill": 250,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8839,
-     "name": "Blindweed",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8845,
-     "name": "Ghost Mushroom",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Dragonfire Potion",
-   "itemId": 250953,
-   "spell": null,
-   "skill": 245,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13465,
-     "name": "Mountain Silversage",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 4625,
-     "name": "Firebloom",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Wicked Regeneration",
-   "itemId": 250336,
-   "spell": null,
-   "skill": 285,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13464,
-     "name": "Golden Sansam",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Greater Intellect",
-   "itemId": 9179,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
     {
      "id": 8839,
      "name": "Blindweed",
      "qty": 1,
      "vendor": null
     },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Wildvine Potion",
+   "itemId": 9144,
+   "spell": null,
+   "skill": 225,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8153,
+     "name": "Wildvine",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8831,
+     "name": "Purple Lotus",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Magic Resistance Potion",
+   "itemId": 9036,
+   "spell": null,
+   "skill": 210,
+   "yield": 1,
+   "reagents": [
     {
      "id": 3358,
      "name": "Khadgar's Whisker",
@@ -3202,29 +3211,8 @@
      "vendor": null
     },
     {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of Greater Strength",
-   "itemId": 9206,
-   "spell": null,
-   "skill": 245,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8846,
-     "name": "Gromsblood",
+     "id": 8831,
+     "name": "Purple Lotus",
      "qty": 1,
      "vendor": null
     },
@@ -3264,6 +3252,60 @@
    ]
   },
   {
+   "name": "Elixir of Holy Power",
+   "itemId": 21546,
+   "spell": null,
+   "skill": 250,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 6371,
+     "name": "Fire Oil",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 4625,
+     "name": "Firebloom",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Elixir of Greater Strength",
+   "itemId": 9206,
+   "spell": null,
+   "skill": 245,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8846,
+     "name": "Gromsblood",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
    "name": "Elixir of Greater Agility",
    "itemId": 9187,
    "spell": null,
@@ -3273,6 +3315,135 @@
     {
      "id": 8838,
      "name": "Sungrass",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Invisibility Potion",
+   "itemId": 9172,
+   "spell": null,
+   "skill": 235,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8845,
+     "name": "Ghost Mushroom",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Arcane Elixir",
+   "itemId": 9155,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8839,
+     "name": "Blindweed",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3821,
+     "name": "Goldthorn",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Dragonfire Potion",
+   "itemId": 250953,
+   "spell": null,
+   "skill": 245,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13465,
+     "name": "Mountain Silversage",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 4625,
+     "name": "Firebloom",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Draught of Dream Vision",
+   "itemId": 9197,
+   "spell": null,
+   "skill": 240,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8831,
+     "name": "Purple Lotus",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Oil of Immolation",
+   "itemId": 8956,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 4625,
+     "name": "Firebloom",
      "qty": 1,
      "vendor": null
     },
@@ -3318,48 +3489,6 @@
    ]
   },
   {
-   "name": "Elixir of Shadow Power",
-   "itemId": 9264,
-   "spell": null,
-   "skill": 250,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8845,
-     "name": "Ghost Mushroom",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Viridian Dye",
-   "itemId": 249431,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 249274,
-     "name": "Stranglevine",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
    "name": "Draught of Greater Water Breathing",
    "itemId": 18294,
    "spell": null,
@@ -3376,108 +3505,6 @@
      "id": 8831,
      "name": "Purple Lotus",
      "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Elixir of the Sages",
-   "itemId": 13447,
-   "spell": null,
-   "skill": 270,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 13466,
-     "name": "Plaguebloom",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Arcane Elixir",
-   "itemId": 9155,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8839,
-     "name": "Blindweed",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 3821,
-     "name": "Goldthorn",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Major Mana Potion",
-   "itemId": 13444,
-   "spell": null,
-   "skill": 295,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 13467,
-     "name": "Icecap",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Draught of Dream Vision",
-   "itemId": 9197,
-   "spell": null,
-   "skill": 240,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8831,
-     "name": "Purple Lotus",
-     "qty": 3,
      "vendor": null
     },
     {
@@ -3516,37 +3543,22 @@
    ]
   },
   {
-   "name": "Essence of Water",
-   "itemId": 7080,
-   "spell": "Transmute: Earth to Water",
-   "skill": 275,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 7076,
-     "name": "Essence of Earth",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
-   "name": "Wildvine Potion",
-   "itemId": 9144,
+   "name": "Elixir of the Sages",
+   "itemId": 13447,
    "spell": null,
-   "skill": 225,
+   "skill": 270,
    "yield": 1,
    "reagents": [
     {
-     "id": 8153,
-     "name": "Wildvine",
+     "id": 13463,
+     "name": "Dreamfoil",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 8831,
-     "name": "Purple Lotus",
-     "qty": 1,
+     "id": 13466,
+     "name": "Plaguebloom",
+     "qty": 2,
      "vendor": null
     },
     {
@@ -3558,48 +3570,48 @@
    ]
   },
   {
-   "name": "Greater Stoneshield Potion",
-   "itemId": 13455,
+   "name": "Elixir of Greater Intellect",
+   "itemId": 9179,
    "spell": null,
-   "skill": 280,
+   "skill": null,
    "yield": 1,
    "reagents": [
-    {
-     "id": 13423,
-     "name": "Stonescale Oil",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 10620,
-     "name": "Thorium Ore",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Gift of Arthas",
-   "itemId": 9088,
-   "spell": null,
-   "skill": 240,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8836,
-     "name": "Arthas' Tears",
-     "qty": 1,
-     "vendor": null
-    },
     {
      "id": 8839,
      "name": "Blindweed",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 3358,
+     "name": "Khadgar's Whisker",
+     "qty": 1,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Limited Invulnerability Potion",
+   "itemId": 3387,
+   "spell": null,
+   "skill": 250,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8839,
+     "name": "Blindweed",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8845,
+     "name": "Ghost Mushroom",
      "qty": 1,
      "vendor": null
     },
@@ -3639,22 +3651,64 @@
    ]
   },
   {
-   "name": "Oil of Immolation",
-   "itemId": 8956,
+   "name": "Dreamless Sleep Potion",
+   "itemId": 12190,
    "spell": null,
    "skill": null,
    "yield": 1,
    "reagents": [
     {
-     "id": 4625,
-     "name": "Firebloom",
+     "id": 8831,
+     "name": "Purple Lotus",
+     "qty": 3,
+     "vendor": null
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Draught of Detect Undead",
+   "itemId": 9154,
+   "spell": null,
+   "skill": null,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8836,
+     "name": "Arthas' Tears",
      "qty": 1,
      "vendor": null
     },
     {
-     "id": 3821,
-     "name": "Goldthorn",
+     "id": 8925,
+     "name": "Crystal Vial",
      "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Superior Mana Potion",
+   "itemId": 13443,
+   "spell": null,
+   "skill": 260,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 8838,
+     "name": "Sungrass",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 8839,
+     "name": "Blindweed",
+     "qty": 2,
      "vendor": null
     },
     {
@@ -3693,71 +3747,17 @@
    ]
   },
   {
-   "name": "Draught of Detect Undead",
-   "itemId": 9154,
-   "spell": null,
-   "skill": null,
+   "name": "Essence of Air",
+   "itemId": 7082,
+   "spell": "Transmute: Water to Air",
+   "skill": 275,
    "yield": 1,
    "reagents": [
     {
-     "id": 8836,
-     "name": "Arthas' Tears",
+     "id": 7080,
+     "name": "Essence of Water",
      "qty": 1,
      "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Dreamless Sleep Potion",
-   "itemId": 12190,
-   "spell": null,
-   "skill": null,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8831,
-     "name": "Purple Lotus",
-     "qty": 3,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Superior Mana Potion",
-   "itemId": 13443,
-   "spell": null,
-   "skill": 260,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 8838,
-     "name": "Sungrass",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8839,
-     "name": "Blindweed",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
     }
    ]
   },
@@ -3810,6 +3810,48 @@
    ]
   },
   {
+   "name": "Ghost Dye",
+   "itemId": 9210,
+   "spell": null,
+   "skill": 245,
+   "yield": 2,
+   "reagents": [
+    {
+     "id": 8845,
+     "name": "Ghost Mushroom",
+     "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 4342,
+     "name": "Purple Dye",
+     "qty": 1,
+     "vendor": 2500
+    },
+    {
+     "id": 8925,
+     "name": "Crystal Vial",
+     "qty": 1,
+     "vendor": 2500
+    }
+   ]
+  },
+  {
+   "name": "Essence of Fire",
+   "itemId": 7078,
+   "spell": "Transmute: Air to Fire",
+   "skill": 275,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 7082,
+     "name": "Essence of Air",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
    "name": "Major Mender's Potion",
    "itemId": 250949,
    "spell": null,
@@ -3837,22 +3879,22 @@
    ]
   },
   {
-   "name": "Elixir of Sages",
-   "itemId": 250338,
+   "name": "Major Spellblasting Potion",
+   "itemId": 250937,
    "spell": null,
-   "skill": 275,
+   "skill": 285,
    "yield": 1,
    "reagents": [
     {
      "id": 13463,
      "name": "Dreamfoil",
-     "qty": 4,
+     "qty": 2,
      "vendor": null
     },
     {
-     "id": 13464,
-     "name": "Golden Sansam",
-     "qty": 2,
+     "id": 13465,
+     "name": "Mountain Silversage",
+     "qty": 1,
      "vendor": null
     },
     {
@@ -3891,22 +3933,49 @@
    ]
   },
   {
-   "name": "Major Spellblasting Potion",
-   "itemId": 250937,
+   "name": "Elixir of Sages",
+   "itemId": 250338,
    "spell": null,
-   "skill": 285,
+   "skill": 275,
    "yield": 1,
    "reagents": [
     {
      "id": 13463,
      "name": "Dreamfoil",
+     "qty": 4,
+     "vendor": null
+    },
+    {
+     "id": 13464,
+     "name": "Golden Sansam",
      "qty": 2,
+     "vendor": null
+    },
+    {
+     "id": 18256,
+     "name": "Imbued Vial",
+     "qty": 1,
+     "vendor": 30000
+    }
+   ]
+  },
+  {
+   "name": "Elixir of the Owl",
+   "itemId": 250337,
+   "spell": null,
+   "skill": 280,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 13463,
+     "name": "Dreamfoil",
+     "qty": 4,
      "vendor": null
     },
     {
      "id": 13465,
      "name": "Mountain Silversage",
-     "qty": 1,
+     "qty": 2,
      "vendor": null
     },
     {
@@ -3951,48 +4020,6 @@
    ]
   },
   {
-   "name": "Elixir of the Owl",
-   "itemId": 250337,
-   "spell": null,
-   "skill": 280,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 4,
-     "vendor": null
-    },
-    {
-     "id": 13465,
-     "name": "Mountain Silversage",
-     "qty": 2,
-     "vendor": null
-    },
-    {
-     "id": 18256,
-     "name": "Imbued Vial",
-     "qty": 1,
-     "vendor": 30000
-    }
-   ]
-  },
-  {
-   "name": "Essence of Fire",
-   "itemId": 7078,
-   "spell": "Transmute: Air to Fire",
-   "skill": 275,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 7082,
-     "name": "Essence of Air",
-     "qty": 1,
-     "vendor": null
-    }
-   ]
-  },
-  {
    "name": "Essence of Undeath",
    "itemId": 12808,
    "spell": "Transmute: Water to Undeath",
@@ -4002,6 +4029,21 @@
     {
      "id": 7080,
      "name": "Essence of Water",
+     "qty": 1,
+     "vendor": null
+    }
+   ]
+  },
+  {
+   "name": "Living Essence",
+   "itemId": 12803,
+   "spell": "Transmute: Earth to Life",
+   "skill": 275,
+   "yield": 1,
+   "reagents": [
+    {
+     "id": 7076,
+     "name": "Essence of Earth",
      "qty": 1,
      "vendor": null
     }
@@ -4031,21 +4073,6 @@
      "name": "Imbued Vial",
      "qty": 1,
      "vendor": 30000
-    }
-   ]
-  },
-  {
-   "name": "Living Essence",
-   "itemId": 12803,
-   "spell": "Transmute: Earth to Life",
-   "skill": 275,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 7076,
-     "name": "Essence of Earth",
-     "qty": 1,
-     "vendor": null
     }
    ]
   },
@@ -4329,33 +4356,6 @@
     {
      "id": 7069,
      "name": "Elemental Air",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 13463,
-     "name": "Dreamfoil",
-     "qty": 1,
-     "vendor": null
-    },
-    {
-     "id": 8925,
-     "name": "Crystal Vial",
-     "qty": 1,
-     "vendor": 2500
-    }
-   ]
-  },
-  {
-   "name": "Greater Nature Protection Potion",
-   "itemId": 13458,
-   "spell": null,
-   "skill": 290,
-   "yield": 1,
-   "reagents": [
-    {
-     "id": 7067,
-     "name": "Elemental Earth",
      "qty": 1,
      "vendor": null
     },
