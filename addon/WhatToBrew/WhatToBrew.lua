@@ -198,6 +198,146 @@ local function BuildRows()
     return rows
 end
 
+local HERB_CLASS, HERB_SUBCLASS = 7, 9
+local ItemClass
+
+local function BagCounts()
+    local counts = {}
+    local C = C_Container
+    if not (C and C.GetContainerNumSlots and C.GetContainerItemInfo) then return counts end
+    for bag = 0, (NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS or 4) do
+        for slot = 1, C.GetContainerNumSlots(bag) or 0 do
+            local info = C.GetContainerItemInfo(bag, slot)
+            if info and info.itemID then
+                counts[info.itemID] = (counts[info.itemID] or 0) + (info.stackCount or 1)
+            end
+        end
+    end
+    return counts
+end
+
+-- Bag items worth a verdict: herbs, plus anything a known recipe uses.
+-- Vendor-bought mats (vials) are left out: they are bought as needed, never sold.
+local function BagMaterials()
+    local reagents = {}
+    for _, recipe in pairs(db.recipes) do
+        for _, slot in ipairs(recipe.slots) do
+            for _, itemID in ipairs(slot.items) do reagents[itemID] = true end
+        end
+    end
+    local held = {}
+    for itemID, count in pairs(BagCounts()) do
+        if not db.vendor[itemID] then
+            local classID, subClassID = ItemClass(itemID)
+            if reagents[itemID] or (classID == HERB_CLASS and subClassID == HERB_SUBCLASS) then
+                held[itemID] = count
+            end
+        end
+    end
+    return held
+end
+
+local function RawValue(itemID)
+    local price = db.prices[itemID]
+    return price and price * (1 - AH_CUT) or 0
+end
+
+-- One craft of a recipe from what is left in the bags. Vendor mats are bought,
+-- everything else has to be held. Gain is what brewing earns over listing the
+-- same herbs raw.
+local function BagCraft(recipe, left)
+    local unit = db.prices[recipe.out]
+    if not unit then return end
+    local need, buys, raw, bought = {}, {}, 0, 0
+    for _, slot in ipairs(recipe.slots) do
+        local bestItem, bestCost, bestHeld
+        for _, itemID in ipairs(slot.items) do
+            local cost, isHeld
+            if (left[itemID] or 0) >= (need[itemID] or 0) + slot.qty then
+                cost, isHeld = RawValue(itemID), true
+            elseif db.vendor[itemID] then
+                cost = db.vendor[itemID]
+            end
+            if cost and (not bestCost or cost < bestCost) then
+                bestItem, bestCost, bestHeld = itemID, cost, isHeld
+            end
+        end
+        if not bestItem then return end
+        if bestHeld then
+            need[bestItem] = (need[bestItem] or 0) + slot.qty
+            raw = raw + bestCost * slot.qty
+        else
+            buys[bestItem] = (buys[bestItem] or 0) + slot.qty
+            bought = bought + bestCost * slot.qty
+        end
+    end
+    local crafts
+    for itemID, qty in pairs(need) do
+        local n = math.floor(left[itemID] / qty)
+        if not crafts or n < crafts then crafts = n end
+    end
+    if not crafts or crafts < 1 then return end
+    local value = unit * recipe.qty * (1 - AH_CUT) - bought
+    return { crafts = crafts, need = need, buys = buys, raw = raw, value = value, gain = value - raw }
+end
+
+-- Greedy: keep brewing whichever recipe beats raw herbs by the most per craft
+-- until nothing does, then everything left over is a "sell" row.
+local function BuildHerbRows()
+    local left = BagMaterials()
+    local plans, rows = {}, {}
+    for _ = 1, 200 do
+        local best, bestRecipe
+        for _, recipe in pairs(db.recipes) do
+            local option = BagCraft(recipe, left)
+            if option and option.gain > 0 and (not best or option.gain > best.gain) then
+                best, bestRecipe = option, recipe
+            end
+        end
+        if not best then break end
+        local plan = plans[bestRecipe]
+        if not plan then
+            plan = { kind = "craft", recipe = bestRecipe, crafts = 0, raw = 0, value = 0, uses = {}, buys = {} }
+            plans[bestRecipe] = plan
+            rows[#rows + 1] = plan
+        end
+        local n = best.crafts
+        plan.crafts = plan.crafts + n
+        plan.raw = plan.raw + best.raw * n
+        plan.value = plan.value + best.value * n
+        for itemID, qty in pairs(best.need) do
+            plan.uses[itemID] = (plan.uses[itemID] or 0) + qty * n
+            left[itemID] = left[itemID] - qty * n
+        end
+        for itemID, qty in pairs(best.buys) do
+            plan.buys[itemID] = (plan.buys[itemID] or 0) + qty * n
+        end
+    end
+
+    local totals = { brewed = 0, sold = 0, raw = 0 }
+    for _, plan in ipairs(rows) do
+        plan.gain = plan.value - plan.raw
+        totals.brewed = totals.brewed + plan.value
+        totals.raw = totals.raw + plan.raw
+    end
+    for itemID, count in pairs(left) do
+        if count > 0 then
+            local price = db.prices[itemID]
+            local value = price and price * count * (1 - AH_CUT)
+            rows[#rows + 1] = { kind = "sell", itemID = itemID, count = count, value = value }
+            totals.sold = totals.sold + (value or 0)
+            totals.raw = totals.raw + (value or 0)
+        end
+    end
+    table.sort(rows, function(a, b)
+        if a.kind ~= b.kind then return a.kind == "craft" end
+        local x, y = a.gain or a.value or -1, b.gain or b.value or -1
+        if x ~= y then return x > y end
+        return (a.itemID or a.recipe.out) < (b.itemID or b.recipe.out)
+    end)
+    return rows, totals
+end
+
 local scan
 
 local function SetStatus(text)
@@ -217,7 +357,7 @@ local function StopScan(finished)
     end
 end
 
-local function ItemClass(itemID)
+function ItemClass(itemID)
     local instant = (C_Item and C_Item.GetItemInfoInstant) or GetItemInfoInstant
     if not instant then return end
     local _, _, _, _, _, classID, subClassID = instant(itemID)
@@ -323,6 +463,7 @@ local function StartScan(all)
     if all then
         for _, itemID in ipairs(SITE_ITEMS) do add(itemID) end
     end
+    for itemID in pairs(BagMaterials()) do add(itemID) end
     if #queue == 0 then
         SetStatus("|cffff5555No recipes yet. Open your Alchemy window once.|r")
         return
@@ -483,11 +624,11 @@ end
 
 local ROW_HEIGHT = 18
 local COLUMNS = {
-    { key = "name",   title = "Recipe",         width = 210, justify = "LEFT" },
-    { key = "cost",   title = "Reagent cost",   width = 95,  justify = "RIGHT" },
-    { key = "sell",   title = "Sells (-5%)",    width = 95,  justify = "RIGHT" },
-    { key = "profit", title = "Profit / craft", width = 100, justify = "RIGHT" },
-    { key = "margin", title = "Margin",         width = 55,  justify = "RIGHT" },
+    { key = "name",   title = "Recipe",         herbs = "Do this",         width = 210, justify = "LEFT" },
+    { key = "cost",   title = "Reagent cost",   herbs = "Sold raw (-5%)",  width = 95,  justify = "RIGHT" },
+    { key = "sell",   title = "Sells (-5%)",    herbs = "Brewed (-5%)",    width = 95,  justify = "RIGHT" },
+    { key = "profit", title = "Profit / craft", herbs = "Extra from brew", width = 100, justify = "RIGHT" },
+    { key = "margin", title = "Margin",         herbs = "",                width = 55,  justify = "RIGHT" },
 }
 
 local function MakeCells(parent, font)
@@ -509,6 +650,33 @@ local function RowTooltip(self)
     if not data then return end
     local recipe = data.recipe
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    if data.kind == "sell" then
+        local unit = db.prices[data.itemID]
+        GameTooltip:AddLine(ItemName(data.itemID))
+        GameTooltip:AddDoubleLine(format("%d in your bags", data.count),
+            unit and (Money(unit) .. " each") or "none listed", 1, 1, 1, 1, 1, 1)
+        GameTooltip:AddLine("No recipe you know turns these into more gold than listing them.", 0.7, 0.7, 0.7, true)
+        GameTooltip:Show()
+        return
+    elseif data.kind == "craft" then
+        GameTooltip:AddLine(format("%d x %s", data.crafts, recipe.name))
+        GameTooltip:AddLine(format("Makes %s x %s", recipe.qty * data.crafts, ItemName(recipe.out)), 1, 1, 1)
+        GameTooltip:AddLine(" ")
+        for itemID, count in pairs(data.uses) do
+            local unit = db.prices[itemID]
+            GameTooltip:AddDoubleLine(format("%d x %s", count, ItemName(itemID)),
+                unit and (Money(unit) .. " each") or "no price", 1, 1, 1, 1, 1, 1)
+        end
+        for itemID, count in pairs(data.buys) do
+            GameTooltip:AddDoubleLine(format("%d x %s", count, ItemName(itemID)),
+                format("buy, %s each", Money(db.vendor[itemID])), 1, 1, 1, 0.7, 0.7, 0.7)
+        end
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddDoubleLine("Those herbs sold raw", Money(data.raw), 1, 0.82, 0, 1, 1, 1)
+        GameTooltip:AddDoubleLine("Brewed and sold", Money(data.value), 1, 0.82, 0, 1, 1, 1)
+        GameTooltip:Show()
+        return
+    end
     GameTooltip:AddLine(recipe.name)
     GameTooltip:AddLine(format("Makes %s x %s", recipe.qty, ItemName(recipe.out)), 1, 1, 1)
     GameTooltip:AddLine(" ")
@@ -561,27 +729,33 @@ local function CreateWindow()
     f.export:SetScript("OnClick", ShowExport)
 
     f.status = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    f.status:SetPoint("LEFT", f.export, "RIGHT", 10, 0)
+    f.status:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 14, 12)
     f.status:SetPoint("RIGHT", f, "RIGHT", -14, 0)
+
+    f.view = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    f.view:SetSize(90, 22)
+    f.view:SetPoint("LEFT", f.export, "RIGHT", 4, 0)
+    f.view:SetScript("OnClick", function()
+        db.view = db.view ~= "herbs" and "herbs" or nil
+        Refresh()
+    end)
     f.status:SetJustifyH("LEFT")
     f.status:SetWordWrap(false)
 
     local header = CreateFrame("Frame", nil, f)
     header:SetPoint("TOPLEFT", 12, -58)
     header:SetSize(570, ROW_HEIGHT)
-    local titles = MakeCells(header, "GameFontNormalSmall")
-    for _, col in ipairs(COLUMNS) do titles[col.key]:SetText(col.title) end
+    f.titles = MakeCells(header, "GameFontNormalSmall")
 
     local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
     scroll:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 0, -2)
-    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -32, 12)
+    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -32, 30)
     f.content = CreateFrame("Frame", nil, scroll)
     f.content:SetSize(570, 1)
     scroll:SetScrollChild(f.content)
 
     f.empty = f:CreateFontString(nil, "OVERLAY", "GameFontDisable")
     f.empty:SetPoint("CENTER", scroll)
-    f.empty:SetText("Open your Alchemy window once so your recipes can be read.")
 
     f.rows = {}
     f:SetScript("OnShow", function() Refresh() end)
@@ -606,34 +780,68 @@ local function GetRow(i)
     return row
 end
 
+local function FillRecipeRow(cells, data)
+    cells.name:SetText(data.recipe.name)
+    cells.cost:SetText(data.cost and Money(data.cost) or "|cffff5555missing|r")
+    cells.sell:SetText(data.revenue and Money(data.revenue) or "|cff808080none listed|r")
+    if data.profit then
+        local color = data.profit >= 0 and "|cff40ff40" or "|cffff5555"
+        cells.profit:SetText(Money(data.profit))
+        cells.margin:SetText(data.cost > 0 and format("%s%d%%|r", color, math.floor(data.profit / data.cost * 100 + 0.5)) or "")
+    else
+        cells.profit:SetText("|cff808080--|r")
+        cells.margin:SetText("")
+    end
+end
+
+local function FillHerbRow(cells, data)
+    if data.kind == "craft" then
+        cells.name:SetText(format("|cff40ff40Brew|r %d x %s", data.crafts, data.recipe.name))
+        cells.cost:SetText(Money(data.raw))
+        cells.sell:SetText(Money(data.value))
+        cells.profit:SetText("|cff40ff40+|r" .. Money(data.gain))
+        cells.margin:SetText(data.raw > 0 and format("|cff40ff40+%d%%|r", math.floor(data.gain / data.raw * 100 + 0.5)) or "")
+    else
+        cells.name:SetText(format("|cffffd100Sell|r %d x %s", data.count, ItemName(data.itemID)))
+        cells.cost:SetText(data.value and Money(data.value) or "|cff808080none listed|r")
+        cells.sell:SetText("")
+        cells.profit:SetText("")
+        cells.margin:SetText("")
+    end
+end
+
 function Refresh()
-    local rows = BuildRows()
+    local herbs = db.view == "herbs"
+    window.view:SetText(herbs and "Recipes" or "My herbs")
+    for _, col in ipairs(COLUMNS) do window.titles[col.key]:SetText(herbs and col.herbs or col.title) end
+
+    local rows, totals
+    if herbs then
+        rows, totals = BuildHerbRows()
+    else
+        rows = BuildRows()
+    end
+    local fill = herbs and FillHerbRow or FillRecipeRow
     for i, data in ipairs(rows) do
         local row = GetRow(i)
-        local cells = row.cells
         row.data = data
-        cells.name:SetText(data.recipe.name)
-        cells.cost:SetText(data.cost and Money(data.cost) or "|cffff5555missing|r")
-        cells.sell:SetText(data.revenue and Money(data.revenue) or "|cff808080none listed|r")
-        if data.profit then
-            local color = data.profit >= 0 and "|cff40ff40" or "|cffff5555"
-            cells.profit:SetText(Money(data.profit))
-            cells.margin:SetText(data.cost > 0 and format("%s%d%%|r", color, math.floor(data.profit / data.cost * 100 + 0.5)) or "")
-        else
-            cells.profit:SetText("|cff808080--|r")
-            cells.margin:SetText("")
-        end
+        fill(row.cells, data)
         row:Show()
     end
     for i = #rows + 1, #window.rows do window.rows[i]:Hide() end
     window.content:SetHeight(math.max(1, #rows * ROW_HEIGHT))
+    window.empty:SetText(herbs and "No herbs or recipe reagents in your bags."
+        or "Open your Alchemy window once so your recipes can be read.")
     window.empty:SetShown(#rows == 0)
-    if not scan then
-        if db.scanTime then
-            SetStatus(format("%d recipes. Prices scanned %s. Hover a row for the reagent breakdown.", #rows, Age(db.scanTime)))
-        else
-            SetStatus(format("%d recipes. No prices yet: open the auction house and press Scan.", #rows))
-        end
+    if scan then return end
+    if not db.scanTime then
+        SetStatus("No prices yet: open the auction house and press Scan.")
+    elseif herbs then
+        SetStatus(format("Brew, then sell the rest: %s. Sell it all raw: %s. Brewing adds %s. Scanned %s.",
+            Money(totals.brewed + totals.sold), Money(totals.raw),
+            Money(totals.brewed + totals.sold - totals.raw), Age(db.scanTime)))
+    else
+        SetStatus(format("%d recipes. Prices scanned %s. Hover a row for the reagent breakdown.", #rows, Age(db.scanTime)))
     end
 end
 
@@ -659,7 +867,7 @@ events:SetScript("OnEvent", function(self, event, arg1)
             "COMMODITY_SEARCH_RESULTS_UPDATED", "ITEM_SEARCH_RESULTS_UPDATED",
             "AUCTION_HOUSE_BROWSE_RESULTS_UPDATED", "AUCTION_HOUSE_BROWSE_RESULTS_ADDED",
             "AUCTION_HOUSE_BROWSE_FAILURE",
-            "MERCHANT_SHOW",
+            "MERCHANT_SHOW", "BAG_UPDATE_DELAYED",
         }) do
             pcall(self.RegisterEvent, self, e)
         end
@@ -680,6 +888,8 @@ events:SetScript("OnEvent", function(self, event, arg1)
         if scan and scan.phase == "browse" then FinishBrowse(false) end
     elseif event == "MERCHANT_SHOW" then
         LearnVendorPrices()
+    elseif event == "BAG_UPDATE_DELAYED" then
+        if window and window:IsShown() and db.view == "herbs" and not scan then Refresh() end
     else
         CaptureRecipes()
     end

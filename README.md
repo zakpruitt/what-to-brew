@@ -23,6 +23,9 @@ themselves. Everything you paste or tick stays in your browser's localStorage; t
 
 `/brew` on its own also works as a standalone profit window for the recipes you know.
 
+Press **My herbs** in that window to judge what is in your bags: it lists what to brew because it
+sells for more than the herbs it uses, and which herbs to just list raw. It needs a fresh **Scan**.
+
 ## Develop
 
 ```
